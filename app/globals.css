@@ -1,0 +1,89 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   Renewed Bodyworks design tokens — extracted from Scott's logo + brand CSS.
+   Pine green primary, cream ground, sunrise amber as the single accent,
+   warm taupe + sage as supporting neutrals. One accent, locked page-wide.
+--------------------------------------------------------------------------- */
+@theme {
+  --color-cream: #fafced;
+  --color-cream-deep: #f2eed8;
+  --color-pine: #356043;
+  --color-pine-deep: #244430;
+  --color-pine-900: #1b3324;
+  --color-sage: #8ea67f;
+  --color-sage-soft: #c7d6b8;
+  --color-amber: #dd8f3a;
+  --color-amber-soft: #eab873;
+  --color-taupe: #b38872;
+  --color-ink: #22271f;
+  --color-muted: #5c6356;
+
+  --font-display: var(--font-cormorant), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-figtree), ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  --radius-card: 18px;
+}
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Display headings lean on the elegant serif; keep descenders clear. */
+.font-display {
+  font-family: var(--font-display);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+}
+
+/* Small uppercase eyebrow — used sparingly (max 1 per 3 sections). */
+.eyebrow {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-weight: 600;
+  color: var(--color-pine);
+}
+
+/* Reveal-on-scroll: content fades/rises in as it enters the viewport. */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Subtle grain-free paper texture via a soft radial wash on hero sections. */
+.hero-wash {
+  background:
+    radial-gradient(120% 120% at 80% -10%, rgba(234, 184, 115, 0.22), transparent 55%),
+    radial-gradient(90% 90% at -10% 110%, rgba(142, 166, 127, 0.18), transparent 55%);
+}
