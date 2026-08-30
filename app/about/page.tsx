@@ -79,8 +79,14 @@ export default function AboutPage() {
       {/* Practitioner */}
       <section className="bg-pine-900 text-cream">
         <div className="mx-auto grid max-w-5xl items-center gap-10 px-4 py-16 sm:px-6 md:grid-cols-[0.8fr_1.2fr]">
-          <Reveal className="mx-auto flex h-40 w-40 items-center justify-center rounded-full bg-cream/10 p-6 md:mx-0">
-            <Image src="/renewed-logo.png" alt="Renewed Bodyworks logo" width={140} height={140} className="h-full w-full object-contain" />
+          <Reveal className="relative mx-auto aspect-[4/5] w-full max-w-xs overflow-hidden rounded-[24px] shadow-lg md:mx-0">
+            <Image
+              src="/images/scott-hartzell.jpg"
+              alt="Scott Hartzell, licensed massage therapist and owner of Renewed Bodyworks"
+              fill
+              sizes="(max-width: 768px) 80vw, 320px"
+              className="object-cover"
+            />
           </Reveal>
           <div>
             <h2 className="font-display text-3xl font-semibold sm:text-4xl">Scott Hartzell, LMT</h2>
@@ -104,7 +110,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <div className="py-4" />
       <CtaBand />
     </>
   );

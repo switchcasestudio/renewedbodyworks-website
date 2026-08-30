@@ -1,11 +1,11 @@
 import Image from "next/image";
-import { business, services, type Location, locations } from "@/lib/business";
+import { business, type Location, locations } from "@/lib/business";
 import { localBusinessSchema, breadcrumbSchema, faqSchema } from "@/lib/schema";
 import JsonLd from "./JsonLd";
 import Reveal from "./Reveal";
 import Faq from "./Faq";
 import { BookButton, PhoneLink } from "./Buttons";
-import { RatingBadge, ServiceCard, Testimonials } from "./ui";
+import { RatingBadge, Testimonials } from "./ui";
 
 export default function LocationPage({ loc }: { loc: Location }) {
   const mapQuery = encodeURIComponent(
@@ -48,8 +48,8 @@ export default function LocationPage({ loc }: { loc: Location }) {
 
           <Reveal className="relative aspect-[4/5] overflow-hidden rounded-[24px] shadow-lg shadow-pine/15">
             <Image
-              src="/images/hero-deep-tissue.jpg"
-              alt={`Therapeutic massage session at Renewed Bodyworks in ${loc.city}, Oregon`}
+              src="/images/location-massage.jpg"
+              alt={`Therapeutic back massage session at Renewed Bodyworks in ${loc.city}, Oregon`}
               fill
               priority
               sizes="(max-width: 1024px) 100vw, 45vw"
@@ -113,15 +113,20 @@ export default function LocationPage({ loc }: { loc: Location }) {
         </div>
       </section>
 
-      {/* Services offered here */}
+      {/* Map */}
       <section className="mx-auto max-w-6xl px-4 pb-16 sm:px-6">
         <h2 className="mb-8 font-display text-3xl font-semibold text-pine-deep sm:text-4xl">
-          Services at the {loc.city} studio
+          Find the {loc.city} studio
         </h2>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {services.slice(0, 6).map((s, i) => (
-            <ServiceCard key={s.slug} service={s} index={i} />
-          ))}
+        <div className="overflow-hidden rounded-[24px] border border-pine/10 shadow-lg shadow-pine/10">
+          <iframe
+            src={`https://maps.google.com/maps?q=${mapQuery}&z=15&output=embed`}
+            title={`Map of Renewed Bodyworks, ${loc.streetAddress}, ${loc.addressLocality}, ${loc.addressRegion}`}
+            className="h-[420px] w-full border-0"
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            allowFullScreen
+          />
         </div>
       </section>
 
