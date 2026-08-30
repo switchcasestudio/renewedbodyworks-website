@@ -60,7 +60,7 @@ export default function ContactForm() {
   const label = "mb-1.5 block text-sm font-medium text-ink";
 
   return (
-    <form onSubmit={onSubmit} className="rounded-[18px] border border-pine/10 bg-white p-6 shadow-sm sm:p-8" noValidate>
+    <form onSubmit={onSubmit} className="flex h-full flex-col rounded-[18px] border border-pine/10 bg-white p-6 shadow-sm sm:p-8" noValidate>
       <h2 className="mb-6 font-display text-2xl font-semibold text-pine-deep">Send a message</h2>
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
@@ -87,9 +87,9 @@ export default function ContactForm() {
         </select>
       </div>
 
-      <div className="mt-5">
+      <div className="mt-5 flex flex-1 flex-col">
         <label htmlFor="message" className={label}>How can Scott help? <span className="text-amber">*</span></label>
-        <textarea id="message" name="message" required rows={5} className={field} placeholder="Share what you're looking for, any areas of focus, and your availability." />
+        <textarea id="message" name="message" required rows={5} className={`${field} min-h-[130px] flex-1 resize-none`} placeholder="Share what you're looking for, any areas of focus, and your availability." />
       </div>
 
       {/* Honeypot — hidden from humans */}

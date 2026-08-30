@@ -101,7 +101,7 @@ export default function ContactPage() {
           </div>
 
           {/* Form */}
-          <div>
+          <div className="lg:self-stretch">
             <ContactForm />
           </div>
         </div>

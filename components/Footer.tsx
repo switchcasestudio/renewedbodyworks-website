@@ -87,7 +87,7 @@ export default function Footer() {
             >
               Switch Case Studio
             </a>
-            , an AI-first web design &amp; automation studio in Portland, OR
+            , a web design &amp; automation studio in Portland, OR
           </p>
           <p>Licensed Massage Therapy · State of Oregon</p>
         </div>
