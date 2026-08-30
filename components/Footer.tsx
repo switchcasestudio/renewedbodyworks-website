@@ -77,6 +77,18 @@ export default function Footer() {
       <div className="border-t border-cream/10">
         <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-6 text-xs text-cream/50 sm:flex-row sm:items-center sm:justify-between sm:px-6">
           <p>© {year} {business.legalName}. All rights reserved.</p>
+          <p>
+            Designed &amp; developed with care by{" "}
+            <a
+              href="https://switchcasestudio.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-cream/70 underline decoration-cream/30 underline-offset-2 hover:text-cream"
+            >
+              Switch Case Studio
+            </a>
+            , an AI-first web design &amp; automation studio in Portland, OR
+          </p>
           <p>Licensed Massage Therapy · State of Oregon</p>
         </div>
       </div>

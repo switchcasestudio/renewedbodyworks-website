@@ -56,6 +56,14 @@ export default function ServicesPage() {
             Payment by cash, credit, or debit. New clients complete a short health intake so Scott can
             tailor the session.
           </p>
+          <div className="mt-6 flex flex-wrap gap-3 border-t border-pine/10 pt-6">
+            <BookButton href={locations[0].bookingUrl} event="book_click_eugene" variant="primary">
+              Book in Eugene
+            </BookButton>
+            <BookButton href={locations[1].bookingUrl} event="book_click_portland" variant="amber">
+              Book in Portland
+            </BookButton>
+          </div>
         </div>
       </section>
 

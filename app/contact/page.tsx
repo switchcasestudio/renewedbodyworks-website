@@ -102,7 +102,6 @@ export default function ContactPage() {
 
           {/* Form */}
           <div>
-            <h2 className="mb-4 font-display text-2xl font-semibold text-pine-deep">Send a message</h2>
             <ContactForm />
           </div>
         </div>

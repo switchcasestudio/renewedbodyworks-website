@@ -61,6 +61,7 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={onSubmit} className="rounded-[18px] border border-pine/10 bg-white p-6 shadow-sm sm:p-8" noValidate>
+      <h2 className="mb-6 font-display text-2xl font-semibold text-pine-deep">Send a message</h2>
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
           <label htmlFor="name" className={label}>Name <span className="text-amber">*</span></label>
