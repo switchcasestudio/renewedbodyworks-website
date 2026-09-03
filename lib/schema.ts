@@ -4,6 +4,7 @@ import { SITE_URL, business, locations, services, faqs, type Location } from "./
 const dayMap: Record<string, string[]> = {
   "Mon – Fri": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
   "Mon – Wed": ["Monday", "Tuesday", "Wednesday"],
+  "Thu – Fri": ["Thursday", "Friday"],
   Saturday: ["Saturday"],
   Sunday: ["Sunday"],
   Thursday: ["Thursday"],

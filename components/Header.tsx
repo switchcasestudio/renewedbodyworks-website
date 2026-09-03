@@ -93,11 +93,11 @@ export default function Header() {
                 Book now
               </a>
               <a
-                href={business.phoneHref}
+                href={business.smsHref}
                 onClick={() => track("phone_tap")}
                 className="flex-1 rounded-full border border-pine/30 px-5 py-3 text-center font-semibold text-pine"
               >
-                Call
+                Text
               </a>
             </li>
           </ul>

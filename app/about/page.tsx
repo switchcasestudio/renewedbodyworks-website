@@ -58,16 +58,30 @@ export default function AboutPage() {
       <section className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
         <div className="prose-lg space-y-5 text-lg leading-relaxed text-ink/90">
           <p>
-            Renewed Bodyworks started from a desire to help others experience the restorative power
-            of touch, and the ability our bodies have to heal themselves. Scott creates a welcoming,
-            calming environment for stress relief, with sessions that target your specific tension
-            while promoting overall relaxation.
+            Scott first discovered the power of bodywork after sustaining a back injury. Seeing
+            incredible, long-term improvement through regular treatment, massage quickly became an
+            essential part of his own wellness routine. For years, his massage therapist recognized
+            his passion and persistently encouraged him to pursue a massage therapy license. Scott
+            finally took the leap, moving to Costa Rica for six months to immerse himself in
+            studying massage therapy.
+          </p>
+          <p>
+            Renewed Bodyworks started from that experience, a desire to help others feel the
+            restorative power of touch, and the ability our bodies have to heal themselves. Scott
+            creates a welcoming, calming environment for stress relief, with sessions that target
+            your specific tension while promoting overall relaxation.
           </p>
           <p>
             Using a range of techniques, Scott aims to restore balance and tranquility, helping you
             reconnect with yourself and enjoy the benefits of therapeutic touch. Whether you are
             seeking chronic pain relief, sports recovery, or simple stress management, your
             priorities guide the work.
+          </p>
+          <p>
+            Because education and lifelong learning are core pillars of his practice, Scott&rsquo;s
+            journey didn&rsquo;t stop at graduation day. He remains deeply committed to constantly
+            honing his skills and exploring advanced techniques, to ensure his clients always
+            receive the highest level of care.
           </p>
           <p>
             Before every appointment Scott goes over your health history and goals, giving you the
@@ -92,10 +106,10 @@ export default function AboutPage() {
             <h2 className="font-display text-3xl font-semibold sm:text-4xl">Scott Hartzell, LMT</h2>
             <p className="mt-4 leading-relaxed text-cream/80">
               Scott is the licensed massage therapist behind Renewed Bodyworks, practicing in both
-              Eugene and Portland. His approach blends multiple modalities in a single session,
-              deep tissue, Swedish, sports, trigger point, and stretching, chosen around your goals
-              rather than a fixed routine. Clients describe intuitive, effective work that finds the
-              source of the tension.
+              Eugene and Portland. His approach blends various modalities to include Deep Tissue,
+              Trigger Point, Swedish, Sports, and assisted stretches in a single session, all chosen
+              around your goals rather than a fixed routine. Clients describe their experience as
+              intuitive, effective work that finds the source of the tension.
             </p>
             <p className="mt-4 text-sm text-cream/60">
               Licensed Massage Therapist, State of Oregon. License number displayed at each studio

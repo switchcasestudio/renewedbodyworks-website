@@ -9,7 +9,7 @@ import { BookButton } from "@/components/Buttons";
 export const metadata: Metadata = pageMeta({
   title: "Contact & Book | Massage in Eugene & Portland",
   description:
-    "Contact Renewed Bodyworks to book massage in Eugene or Portland, Oregon. Call 541-543-5215, send a message, or book online. Addresses, hours, and directions inside.",
+    "Contact Renewed Bodyworks to book massage in Eugene or Portland, Oregon. Text 541-543-5215, send a message, or book online. Addresses, hours, and directions inside.",
   path: "/contact",
 });
 
@@ -82,6 +82,7 @@ export default function ContactPage() {
                       </div>
                     ))}
                   </dl>
+                  <p className="mt-3 text-xs text-muted">{loc.hoursNote}</p>
                   <div className="mt-5 flex flex-wrap gap-3">
                     <BookButton href={loc.bookingUrl} event={loc.bookEvent} variant="primary">
                       Book in {loc.city}

@@ -14,6 +14,8 @@ export const business = {
   practitioner: "Scott Hartzell, LMT",
   phone: "541-543-5215",
   phoneHref: "tel:+15415435215",
+  // Scott prefers texts over calls — CTAs labeled "Text" link here instead of tel:.
+  smsHref: "sms:+15415435215",
   email: "Scott@RenewedBodyWorks.com",
   emailHref: "mailto:Scott@RenewedBodyWorks.com",
   // Google reviews only (10 on GBP). The audit counted 22 across Google +
@@ -37,6 +39,8 @@ export type Location = {
   bookEvent: "book_click_eugene" | "book_click_portland";
   // Published booking hours (MassageBook). Presented as "by appointment".
   hours: { days: string; open: string; close: string; label: string }[];
+  // Shown under the hours list at every listing (footer, contact, location pages).
+  hoursNote: string;
   blurb: string;
 };
 
@@ -53,10 +57,10 @@ export const locations: Location[] = [
     bookingUrl: "https://www.massagebook.com/business/26781443",
     bookEvent: "book_click_eugene",
     hours: [
-      { days: "Mon – Fri", open: "08:00", close: "19:00", label: "8:00 AM – 7:00 PM" },
-      { days: "Saturday", open: "09:00", close: "19:00", label: "9:00 AM – 7:00 PM" },
-      { days: "Sunday", open: "", close: "", label: "By appointment" },
+      { days: "Thu – Fri", open: "08:00", close: "19:00", label: "8:00 AM – 7:00 PM" },
+      { days: "Saturday", open: "09:00", close: "16:00", label: "9:00 AM – 4:00 PM" },
     ],
+    hoursNote: "Text for appt outside these listed hours",
     blurb:
       "Scott's downtown Eugene studio on Willamette Street offers therapeutic and customized bodywork with full weekday availability.",
   },
@@ -72,10 +76,10 @@ export const locations: Location[] = [
     bookingUrl: "https://www.massagebook.com/therapists/renewed-bodyworks-llc",
     bookEvent: "book_click_portland",
     hours: [
-      { days: "Mon – Wed", open: "07:00", close: "21:00", label: "7:00 AM – 9:00 PM" },
-      { days: "Thursday", open: "", close: "", label: "By appointment" },
-      { days: "Sunday", open: "13:00", close: "21:00", label: "1:00 PM – 9:00 PM" },
+      { days: "Sunday", open: "12:00", close: "18:00", label: "12:00 PM – 6:00 PM" },
+      { days: "Mon – Wed", open: "08:00", close: "19:00", label: "8:00 AM – 7:00 PM" },
     ],
+    hoursNote: "Text for appt outside these listed hours",
     blurb:
       "Scott's Portland studio on N Williams Ave in the Boise neighborhood is rated 5.0 on Google and open early on weekdays.",
   },
@@ -229,7 +233,7 @@ export const faqs: { q: string; a: string }[] = [
   },
   {
     q: "How do I book an appointment?",
-    a: "Book online through the booking page for either location, or call 541-543-5215. New clients complete a short health intake so Scott can tailor the session to your goals.",
+    a: "Book online through the booking page for either location, or text 541-543-5215. New clients complete a short health intake so Scott can tailor the session to your goals.",
   },
   {
     q: "What happens at my first session?",

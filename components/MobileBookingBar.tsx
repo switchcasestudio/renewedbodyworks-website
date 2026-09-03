@@ -11,11 +11,11 @@ export default function MobileBookingBar() {
     <div className="fixed inset-x-0 bottom-0 z-40 border-t border-pine/15 bg-cream/95 backdrop-blur-md lg:hidden">
       <div className="mx-auto flex max-w-6xl gap-3 px-4 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
         <a
-          href={business.phoneHref}
+          href={business.smsHref}
           onClick={() => track("phone_tap")}
           className="flex flex-1 items-center justify-center rounded-full border border-pine/30 py-3 font-semibold text-pine"
         >
-          Call
+          Text
         </a>
         <a
           href={eugene.bookingUrl}

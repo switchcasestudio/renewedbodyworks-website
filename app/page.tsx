@@ -129,14 +129,14 @@ export default function HomePage() {
           <div>
             <p className="eyebrow mb-3">Meet your therapist</p>
             <h2 className="font-display text-3xl font-semibold text-pine-deep sm:text-4xl md:text-[2.75rem]">
-              Every session, Scott&rsquo;s hands and full attention
+              Every session tailored to your needs
             </h2>
             <p className="mt-4 text-lg leading-relaxed text-muted">
               Scott is the licensed massage therapist behind Renewed Bodyworks, practicing in both
-              Eugene and Portland. His approach blends deep tissue, Swedish, sports, trigger point,
-              and stretching in a single session, chosen around your goals rather than a fixed
-              routine. Clients describe intuitive, effective work that finds the source of the
-              tension.
+              Eugene and Portland. His approach blends various modalities to include Deep Tissue,
+              Trigger Point, Swedish, Sports, and assisted stretches in a single session, all chosen
+              around your goals rather than a fixed routine. Clients describe their experience as
+              intuitive, effective work that finds the source of the tension.
             </p>
             <div className="mt-7">
               <LinkButton href="/about" variant="outline">
@@ -228,8 +228,8 @@ export default function HomePage() {
           <Faq />
         </div>
         <p className="mx-auto mt-8 max-w-xl text-center text-muted">
-          Still have a question? Call{" "}
-          <a href={business.phoneHref} className="font-semibold text-pine hover:text-pine-deep">
+          Still have a question? Text{" "}
+          <a href={business.smsHref} className="font-semibold text-pine hover:text-pine-deep">
             {business.phone}
           </a>{" "}
           or{" "}

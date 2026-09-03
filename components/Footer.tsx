@@ -35,6 +35,7 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
+            <p className="mt-1.5 text-xs text-cream/50">{loc.hoursNote}</p>
             <a
               href={loc.bookingUrl}
               target="_blank"

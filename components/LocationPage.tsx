@@ -88,7 +88,7 @@ export default function LocationPage({ loc }: { loc: Location }) {
                 </div>
               ))}
             </dl>
-            <p className="mt-3 text-xs text-muted">Sessions by appointment. Book online any time.</p>
+            <p className="mt-3 text-xs text-muted">{loc.hoursNote}</p>
           </div>
           <div className="rounded-[18px] border border-pine/10 bg-white p-7 shadow-sm">
             <h2 className="font-display text-xl font-semibold text-pine-deep">Contact</h2>

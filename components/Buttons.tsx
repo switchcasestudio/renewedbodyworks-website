@@ -55,11 +55,11 @@ export function PhoneLink({
 }) {
   return (
     <a
-      href={business.phoneHref}
+      href={business.smsHref}
       onClick={() => track("phone_tap")}
       className={`${base} ${sizes} ${variants[variant]} ${className}`}
     >
-      {children ?? `Call ${business.phone}`}
+      {children ?? `Text ${business.phone}`}
     </a>
   );
 }

@@ -48,8 +48,8 @@ export default function ContactForm() {
         </div>
         <h3 className="mt-4 font-display text-2xl font-semibold text-pine-deep">Message sent</h3>
         <p className="mt-2 text-muted">
-          Thanks for reaching out. Scott&rsquo;ll get back to you soon. For the fastest response, call{" "}
-          <a href="tel:+15415435215" className="font-semibold text-pine">541-543-5215</a>.
+          Thanks for reaching out. Scott&rsquo;ll get back to you soon. For the fastest response, text{" "}
+          <a href="sms:+15415435215" className="font-semibold text-pine">541-543-5215</a>.
         </p>
       </div>
     );
@@ -110,7 +110,7 @@ export default function ContactForm() {
         {status === "submitting" ? "Sending…" : "Send message"}
       </button>
       <p className="mt-3 text-xs text-muted">
-        Prefer to talk? Call <a href="tel:+15415435215" className="font-medium text-pine">541-543-5215</a>. Your details are never shared.
+        Prefer to text? <a href="sms:+15415435215" className="font-medium text-pine">541-543-5215</a>. Your details are never shared.
       </p>
     </form>
   );
