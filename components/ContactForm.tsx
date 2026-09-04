@@ -34,7 +34,7 @@ export default function ContactForm() {
       form.reset();
     } catch {
       setStatus("error");
-      setError("Something went wrong. Please call 541-543-5215 and Scott will take care of you.");
+      setError("Something went wrong. Please text 541-543-5215 and Scott will take care of you.");
     }
   }
 

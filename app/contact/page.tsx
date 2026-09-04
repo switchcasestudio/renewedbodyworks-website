@@ -30,7 +30,7 @@ export default function ContactPage() {
             Book your session in Eugene or Portland
           </h1>
           <p className="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-muted">
-            Book online any time, call, or send a message and Scott will help you find the right
+            Book online any time, text, or send a message and Scott will help you find the right
             appointment.
           </p>
         </div>

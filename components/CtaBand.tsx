@@ -21,7 +21,7 @@ export default function CtaBand() {
           Ready to feel renewed?
         </h2>
         <p className="mx-auto mt-4 max-w-xl text-lg leading-relaxed text-cream/80">
-          Book online in Eugene or Portland, or call and Scott will find a time that works. New
+          Book online in Eugene or Portland, or text and Scott will find a time that works. New
           clients start with a short intake so every session fits your body.
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
