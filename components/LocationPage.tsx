@@ -48,8 +48,8 @@ export default function LocationPage({ loc }: { loc: Location }) {
 
           <Reveal className="relative aspect-[4/5] overflow-hidden rounded-[24px] shadow-lg shadow-pine/15">
             <Image
-              src="/images/location-massage.jpg"
-              alt={`Therapeutic back massage session at Renewed Bodyworks in ${loc.city}, Oregon`}
+              src={loc.heroImage}
+              alt={loc.heroImageAlt}
               fill
               priority
               sizes="(max-width: 1024px) 100vw, 45vw"

@@ -152,8 +152,8 @@ export default function HomePage() {
         <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 py-20 sm:px-6 lg:grid-cols-2">
           <Reveal className="relative order-last aspect-[5/4] overflow-hidden rounded-[24px] shadow-lg lg:order-first lg:aspect-auto lg:self-stretch">
             <Image
-              src="/images/oregon-forest-path.jpg"
-              alt="Sunlit forest path through tall evergreens in Oregon"
+              src="/images/renewed-difference-massage.jpg"
+              alt="Close-up of two hands working a client's lower back"
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-cover"

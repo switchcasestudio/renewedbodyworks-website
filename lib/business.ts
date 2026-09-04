@@ -42,6 +42,9 @@ export type Location = {
   // Shown under the hours list at every listing (footer, contact, location pages).
   hoursNote: string;
   blurb: string;
+  // Location-page hero photo + alt text.
+  heroImage: string;
+  heroImageAlt: string;
 };
 
 export const locations: Location[] = [
@@ -63,6 +66,8 @@ export const locations: Location[] = [
     hoursNote: "Text for appt outside these listed hours",
     blurb:
       "Scott's downtown Eugene studio on Willamette Street offers therapeutic and customized bodywork with full weekday availability.",
+    heroImage: "/images/location-massage.jpg",
+    heroImageAlt: "Close-up of a therapeutic back massage session, hands working the shoulder",
   },
   {
     key: "portland",
@@ -82,6 +87,8 @@ export const locations: Location[] = [
     hoursNote: "Text for appt outside these listed hours",
     blurb:
       "Scott's Portland studio on N Williams Ave in the Boise neighborhood is rated 5.0 on Google and open early on weekdays.",
+    heroImage: "/images/studio-portland.jpg",
+    heroImageAlt: "The Renewed Bodyworks Portland studio with massage table, plants, and anatomy prints",
   },
 ];
 
@@ -122,9 +129,8 @@ export const services: Service[] = [
       { minutes: 60, price: 120 },
       { minutes: 90, price: 165 },
     ],
-    image: "/images/studio-portland.jpg",
-    imageAlt:
-      "The Renewed Bodyworks Portland studio with massage table, plants, and anatomy prints",
+    image: "/images/bodywork-chest-massage.jpg",
+    imageAlt: "Therapist's hands working a client's chest and shoulders during a customized bodywork session",
     best: "Chronic pain, injury recovery, and mobility",
   },
   {
@@ -151,8 +157,8 @@ export const services: Service[] = [
       { minutes: 60, price: 120 },
       { minutes: 90, price: 165 },
     ],
-    image: "/images/sports-focused.jpg",
-    imageAlt: "Therapist performing focused sports massage work on a client's foot and ankle",
+    image: "/images/sports-knee-massage.jpg",
+    imageAlt: "Therapist performing focused sports massage work on a client's knee",
     best: "Athletes, events, and pre/post workout",
   },
   {

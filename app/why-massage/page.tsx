@@ -48,6 +48,31 @@ export default function WhyMassagePage() {
         </div>
       </section>
 
+      <section className="border-b border-pine/10 bg-cream-deep/50">
+        <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 py-20 sm:px-6 lg:grid-cols-2">
+          <Reveal className="relative aspect-[4/3] overflow-hidden rounded-[24px] shadow-lg">
+            <Image
+              src="/images/shoulder-work-massage.jpg"
+              alt="Hands working a client's shoulder during a massage session"
+              fill
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="object-cover"
+            />
+          </Reveal>
+          <div>
+            <p className="eyebrow mb-3">More than relaxation</p>
+            <h2 className="font-display text-3xl font-semibold text-pine-deep sm:text-4xl">
+              The benefits come from the work itself
+            </h2>
+            <p className="mt-4 text-lg leading-relaxed text-muted">
+              Every benefit below comes down to skilled, hands-on technique, applied with intention
+              to what your body actually needs that day. That&rsquo;s the difference between a
+              massage that feels nice for an hour and one that changes how you feel all week.
+            </p>
+          </div>
+        </div>
+      </section>
+
       <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
         <SectionHeading
           title="Nine reasons to make it a habit"
