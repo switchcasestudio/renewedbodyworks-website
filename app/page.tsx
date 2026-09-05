@@ -39,7 +39,7 @@ export default function HomePage() {
         <div className="absolute inset-x-0 bottom-0 -z-10 h-32 bg-gradient-to-t from-pine-900/70 to-transparent" />
 
         <div className="mx-auto flex min-h-[78vh] max-w-6xl items-center px-4 py-20 sm:px-6 lg:py-28">
-          <div className="max-w-2xl">
+          <div className="stagger-in max-w-2xl">
             <p className="eyebrow mb-4 text-amber-soft! [text-shadow:0_1px_8px_rgba(27,51,36,0.8)]">
               Eugene & Portland, Oregon
             </p>
@@ -75,11 +75,16 @@ export default function HomePage() {
             { k: "5.0", v: "Every Google review, five stars" },
             { k: "2", v: "Oregon locations, Eugene & Portland" },
             { k: "60 & 90 min", v: "Sessions from $120, or a $55 focused visit" },
-          ].map((item) => (
-            <div key={item.v} className="text-center sm:text-left">
+          ].map((item, i) => (
+            <Reveal
+              key={item.v}
+              delay={i * 90}
+              dir="fade"
+              className="text-center sm:text-left"
+            >
               <p className="font-display text-3xl font-semibold text-pine">{item.k}</p>
               <p className="mt-1 text-sm text-muted">{item.v}</p>
-            </div>
+            </Reveal>
           ))}
         </div>
       </section>
@@ -92,8 +97,11 @@ export default function HomePage() {
             title="Bodywork tailored to what your body needs"
             intro="Every session begins with your goals. Choose a focus, or let Scott build a plan with you."
           />
-          <Link href="/services" className="hidden text-sm font-semibold text-pine hover:text-pine-deep sm:block">
-            All services &amp; prices →
+          <Link
+            href="/services"
+            className="link-sweep arrow-link hidden text-sm font-semibold text-pine hover:text-pine-deep sm:block"
+          >
+            All services &amp; prices <span className="arrow">&rarr;</span>
           </Link>
         </div>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -111,7 +119,7 @@ export default function HomePage() {
       {/* Meet Scott — about teaser */}
       <section className="border-t border-pine/10 bg-cream-deep/50">
         <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 py-20 sm:px-6 lg:grid-cols-[0.85fr_1.15fr]">
-          <Reveal className="relative mx-auto w-full max-w-sm">
+          <Reveal dir="left" className="relative mx-auto w-full max-w-sm">
             <div className="relative aspect-[4/5] overflow-hidden rounded-[24px] shadow-lg shadow-pine/15">
               <Image
                 src="/images/scott-hartzell.jpg"
@@ -121,7 +129,7 @@ export default function HomePage() {
                 className="object-cover"
               />
             </div>
-            <div className="absolute -bottom-5 -right-5 hidden rounded-2xl border border-pine/10 bg-cream px-5 py-3 shadow-md sm:block">
+            <div className="lift absolute -bottom-5 -right-5 hidden rounded-2xl border border-pine/10 bg-cream px-5 py-3 shadow-md sm:block">
               <p className="font-display text-xl font-semibold text-pine-deep">Scott Hartzell</p>
               <p className="text-sm text-muted">Licensed Massage Therapist</p>
             </div>
@@ -150,7 +158,7 @@ export default function HomePage() {
       {/* The Renewed difference — feature split */}
       <section className="bg-pine-900 text-cream">
         <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 py-20 sm:px-6 lg:grid-cols-2">
-          <Reveal className="relative order-last aspect-[5/4] overflow-hidden rounded-[24px] shadow-lg lg:order-first lg:aspect-auto lg:self-stretch">
+          <Reveal dir="left" className="relative order-last aspect-[5/4] overflow-hidden rounded-[24px] shadow-lg lg:order-first lg:aspect-auto lg:self-stretch">
             <Image
               src="/images/renewed-difference-massage.jpg"
               alt="Close-up of two hands working a client's lower back"
@@ -173,8 +181,8 @@ export default function HomePage() {
                 ["Listens first", "Scott goes over your health history and goals before every session and focuses on what you need that day."],
                 ["Truly customized", "Multiple modalities in one session, from Swedish and deep tissue to trigger point and stretching."],
                 ["Built for real relief", "Chronic pain, injury recovery, mobility, sports performance, or simply a calmer nervous system."],
-              ].map(([t, d]) => (
-                <li key={t} className="flex gap-4">
+              ].map(([t, d], i) => (
+                <Reveal as="li" key={t} delay={i * 90} dir="left" className="flex gap-4">
                   <span className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-amber text-pine-900">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M20 6L9 17l-5-5" />
@@ -184,7 +192,7 @@ export default function HomePage() {
                     <p className="font-semibold text-cream">{t}</p>
                     <p className="text-cream/70">{d}</p>
                   </div>
-                </li>
+                </Reveal>
               ))}
             </ul>
             <div className="mt-8">
@@ -205,8 +213,10 @@ export default function HomePage() {
           center
         />
         <div className="mt-10 grid gap-6 md:grid-cols-2">
-          {locations.map((loc) => (
-            <LocationCard key={loc.key} loc={loc} />
+          {locations.map((loc, i) => (
+            <Reveal key={loc.key} delay={i * 90} className="h-full">
+              <LocationCard loc={loc} />
+            </Reveal>
           ))}
         </div>
       </section>
@@ -229,11 +239,11 @@ export default function HomePage() {
         </div>
         <p className="mx-auto mt-8 max-w-xl text-center text-muted">
           Still have a question? Text{" "}
-          <a href={business.smsHref} className="font-semibold text-pine hover:text-pine-deep">
+          <a href={business.smsHref} className="link-sweep font-semibold text-pine hover:text-pine-deep">
             {business.phone}
           </a>{" "}
           or{" "}
-          <Link href="/contact" className="font-semibold text-pine hover:text-pine-deep">
+          <Link href="/contact" className="link-sweep font-semibold text-pine hover:text-pine-deep">
             send a message
           </Link>
           .

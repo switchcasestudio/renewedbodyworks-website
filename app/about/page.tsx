@@ -29,7 +29,7 @@ export default function AboutPage() {
 
       <section className="hero-wash">
         <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 pt-16 pb-14 sm:px-6 lg:grid-cols-2 lg:pt-20">
-          <div>
+          <div className="stagger-in">
             <p className="eyebrow mb-4">Scott&rsquo;s story</p>
             <h1 className="font-display text-4xl font-semibold leading-[1.06] text-pine-deep sm:text-5xl md:text-6xl">
               Helping you reconnect with yourself
@@ -42,7 +42,7 @@ export default function AboutPage() {
               <RatingBadge />
             </div>
           </div>
-          <Reveal className="relative aspect-[5/4] overflow-hidden rounded-[24px] shadow-lg">
+          <Reveal dir="right" className="relative aspect-[5/4] overflow-hidden rounded-[24px] shadow-lg">
             <Image
               src="/images/oregon-forest-path.jpg"
               alt="Sunlit path through a tall Oregon evergreen forest"
@@ -65,7 +65,7 @@ export default function AboutPage() {
             finally took the leap, moving to Costa Rica for six months to immerse himself in
             studying massage therapy.
           </p>
-          <Reveal className="relative aspect-[3/2] overflow-hidden rounded-[24px] shadow-lg">
+          <Reveal dir="scale" className="relative aspect-[3/2] overflow-hidden rounded-[24px] shadow-lg">
             <Image
               src="/images/trigger-point-massage.jpg"
               alt="Close-up of a therapist's hand applying trigger-point pressure to a client's back"
@@ -102,7 +102,7 @@ export default function AboutPage() {
       {/* Practitioner */}
       <section className="bg-pine-900 text-cream">
         <div className="mx-auto grid max-w-5xl items-center gap-10 px-4 py-16 sm:px-6 md:grid-cols-[0.8fr_1.2fr]">
-          <Reveal className="relative mx-auto aspect-[4/5] w-full max-w-xs overflow-hidden rounded-[24px] shadow-lg md:mx-0">
+          <Reveal dir="left" className="relative mx-auto aspect-[4/5] w-full max-w-xs overflow-hidden rounded-[24px] shadow-lg md:mx-0">
             <Image
               src="/images/scott-hartzell.jpg"
               alt="Scott Hartzell, licensed massage therapist and owner of Renewed Bodyworks"

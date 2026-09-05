@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -9,13 +9,34 @@ import { track } from "./track";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
   const eugene = locations[0];
 
+  // Header gains depth once content passes beneath it. Passive listener,
+  // and state only flips at the threshold so React re-renders twice, not
+  // once per scroll frame.
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 12);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Close the mobile menu on navigation.
+  useEffect(() => setOpen(false), [pathname]);
+
   return (
-    <header className="sticky top-0 z-40 border-b border-pine/10 bg-cream/85 backdrop-blur-md">
+    <header
+      data-scrolled={scrolled}
+      className="site-header sticky top-0 z-40 border-b border-pine/10 bg-cream/85 backdrop-blur-md"
+    >
       <div className="mx-auto flex h-[72px] max-w-6xl items-center justify-between px-4 sm:px-6">
-        <Link href="/" className="flex items-center gap-2.5" aria-label="Renewed Bodyworks home">
+        <Link
+          href="/"
+          className="header-mark flex items-center gap-2.5 rounded-lg"
+          aria-label="Renewed Bodyworks home"
+        >
           <Image
             src="/renewed-logo.png"
             alt=""
@@ -36,7 +57,8 @@ export default function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`text-[15px] transition-colors ${
+                data-active={active}
+                className={`link-sweep text-[15px] ${
                   active ? "text-pine font-semibold" : "text-muted hover:text-pine"
                 }`}
               >
@@ -49,7 +71,7 @@ export default function Header() {
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => track("book_click_eugene")}
-            className="rounded-full bg-pine px-5 py-2.5 text-[15px] font-semibold text-cream transition-colors hover:bg-pine-deep"
+            className="press raise rounded-full bg-pine px-5 py-2.5 text-[15px] font-semibold text-cream shadow-sm shadow-pine/20 hover:bg-pine-deep hover:shadow-md hover:shadow-pine/25"
           >
             Book now
           </a>
@@ -58,25 +80,49 @@ export default function Header() {
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
-          className="flex h-11 w-11 items-center justify-center rounded-lg text-pine lg:hidden"
+          className="press flex h-11 w-11 items-center justify-center rounded-lg text-pine lg:hidden"
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
+          aria-controls="mobile-nav"
         >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-            {open ? <path d="M6 6l12 12M18 6L6 18" /> : <><path d="M4 7h16" /><path d="M4 12h16" /><path d="M4 17h16" /></>}
+          {/* Three lines that morph into an X — one element, no swap. */}
+          <svg
+            data-open={open}
+            className="burger"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            aria-hidden
+          >
+            <path className="burger-top" d="M4 7h16" />
+            <path className="burger-mid" d="M4 12h16" />
+            <path className="burger-bot" d="M4 17h16" />
           </svg>
         </button>
       </div>
 
-      {open && (
-        <nav className="border-t border-pine/10 bg-cream lg:hidden" aria-label="Mobile">
-          <ul className="mx-auto flex max-w-6xl flex-col px-4 py-2">
+      {/* Always rendered so it animates closed as well as open. */}
+      <nav
+        id="mobile-nav"
+        data-open={open}
+        aria-label="Mobile"
+        inert={!open}
+        className="collapse bg-cream lg:hidden"
+      >
+        {/* The clipped child carries no border of its own — a border would keep
+            the collapsed row 1px tall and leave a hairline under the header. */}
+        <div>
+          <ul className="mx-auto flex max-w-6xl flex-col border-t border-pine/10 px-4 py-2">
             {nav.map((item) => (
               <li key={item.href}>
                 <Link
                   href={item.href}
                   onClick={() => setOpen(false)}
-                  className="block py-3 text-base text-ink hover:text-pine"
+                  className="press block rounded-lg py-3 text-base text-ink hover:text-pine"
                 >
                   {item.label}
                 </Link>
@@ -88,21 +134,21 @@ export default function Header() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => track("book_click_eugene")}
-                className="flex-1 rounded-full bg-pine px-5 py-3 text-center font-semibold text-cream"
+                className="press flex-1 rounded-full bg-pine px-5 py-3 text-center font-semibold text-cream"
               >
                 Book now
               </a>
               <a
                 href={business.smsHref}
                 onClick={() => track("phone_tap")}
-                className="flex-1 rounded-full border border-pine/30 px-5 py-3 text-center font-semibold text-pine"
+                className="press flex-1 rounded-full border border-pine/30 px-5 py-3 text-center font-semibold text-pine"
               >
                 Text
               </a>
             </li>
           </ul>
-        </nav>
-      )}
+        </div>
+      </nav>
     </header>
   );
 }

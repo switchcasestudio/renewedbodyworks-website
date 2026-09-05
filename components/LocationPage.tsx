@@ -29,7 +29,7 @@ export default function LocationPage({ loc }: { loc: Location }) {
       {/* Hero */}
       <section className="hero-wash">
         <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 pt-16 pb-14 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:pt-20">
-          <div>
+          <div className="stagger-in">
             <p className="eyebrow mb-4">{loc.addressLocality}, Oregon</p>
             <h1 className="font-display text-4xl font-semibold leading-[1.05] text-pine-deep sm:text-5xl md:text-6xl">
               Massage therapy in {loc.city}, Oregon
@@ -46,7 +46,7 @@ export default function LocationPage({ loc }: { loc: Location }) {
             </div>
           </div>
 
-          <Reveal className="relative aspect-[4/5] overflow-hidden rounded-[24px] shadow-lg shadow-pine/15">
+          <Reveal dir="right" className="relative aspect-[4/5] overflow-hidden rounded-[24px] shadow-lg shadow-pine/15">
             <Image
               src={loc.heroImage}
               alt={loc.heroImageAlt}
@@ -62,7 +62,7 @@ export default function LocationPage({ loc }: { loc: Location }) {
       {/* Details: address, hours, directions */}
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
         <div className="grid gap-6 md:grid-cols-3">
-          <div className="rounded-[18px] border border-pine/10 bg-white p-7 shadow-sm">
+          <Reveal className="lift rounded-[18px] border border-pine/10 bg-white p-7 shadow-sm">
             <h2 className="font-display text-xl font-semibold text-pine-deep">Studio address</h2>
             <address className="mt-3 not-italic leading-relaxed text-muted">
               {loc.streetAddress}
@@ -73,33 +73,36 @@ export default function LocationPage({ loc }: { loc: Location }) {
               href={`https://www.google.com/maps/search/?api=1&query=${mapQuery}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-4 inline-block text-sm font-semibold text-pine hover:text-pine-deep"
+              className="link-sweep arrow-link mt-4 inline-block text-sm font-semibold text-pine hover:text-pine-deep"
             >
-              Get directions →
+              Get directions <span className="arrow">&rarr;</span>
             </a>
-          </div>
-          <div className="rounded-[18px] border border-pine/10 bg-white p-7 shadow-sm">
+          </Reveal>
+          <Reveal delay={80} className="lift rounded-[18px] border border-pine/10 bg-white p-7 shadow-sm">
             <h2 className="font-display text-xl font-semibold text-pine-deep">Hours</h2>
             <dl className="mt-3 space-y-1 text-sm">
               {loc.hours.map((h) => (
-                <div key={h.days} className="flex justify-between gap-3 border-b border-pine/5 py-1.5 last:border-0">
+                <div
+                  key={h.days}
+                  className="row-hover -mx-2 flex justify-between gap-3 rounded border-b border-pine/5 px-2 py-1.5 last:border-0"
+                >
                   <dt className="text-muted">{h.days}</dt>
                   <dd className="text-pine-deep">{h.label}</dd>
                 </div>
               ))}
             </dl>
             <p className="mt-3 text-xs text-muted">{loc.hoursNote}</p>
-          </div>
-          <div className="rounded-[18px] border border-pine/10 bg-white p-7 shadow-sm">
+          </Reveal>
+          <Reveal delay={160} className="lift rounded-[18px] border border-pine/10 bg-white p-7 shadow-sm">
             <h2 className="font-display text-xl font-semibold text-pine-deep">Contact</h2>
             <ul className="mt-3 space-y-2 text-sm">
               <li>
-                <a href={business.phoneHref} className="font-semibold text-pine hover:text-pine-deep">
+                <a href={business.phoneHref} className="link-sweep font-semibold text-pine hover:text-pine-deep">
                   {business.phone}
                 </a>
               </li>
               <li>
-                <a href={business.emailHref} className="text-muted hover:text-pine">
+                <a href={business.emailHref} className="link-sweep text-muted hover:text-pine">
                   {business.email}
                 </a>
               </li>
@@ -109,7 +112,7 @@ export default function LocationPage({ loc }: { loc: Location }) {
                 Book now
               </BookButton>
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
@@ -118,7 +121,7 @@ export default function LocationPage({ loc }: { loc: Location }) {
         <h2 className="mb-8 font-display text-3xl font-semibold text-pine-deep sm:text-4xl">
           Find the {loc.city} studio
         </h2>
-        <div className="overflow-hidden rounded-[24px] border border-pine/10 shadow-lg shadow-pine/10">
+        <Reveal dir="scale" className="overflow-hidden rounded-[24px] border border-pine/10 shadow-lg shadow-pine/10">
           <iframe
             src={`https://maps.google.com/maps?q=${mapQuery}&z=15&output=embed`}
             title={`Map of Renewed Bodyworks, ${loc.streetAddress}, ${loc.addressLocality}, ${loc.addressRegion}`}
@@ -127,7 +130,7 @@ export default function LocationPage({ loc }: { loc: Location }) {
             referrerPolicy="no-referrer-when-downgrade"
             allowFullScreen
           />
-        </div>
+        </Reveal>
       </section>
 
       {/* Testimonials */}
@@ -148,8 +151,11 @@ export default function LocationPage({ loc }: { loc: Location }) {
         <Faq />
         <p className="mt-8 text-center text-muted">
           Prefer the other studio?{" "}
-          <a href={`/${other.slug}`} className="font-semibold text-pine hover:text-pine-deep">
-            See massage in {other.city} →
+          <a
+            href={`/${other.slug}`}
+            className="link-sweep arrow-link font-semibold text-pine hover:text-pine-deep"
+          >
+            See massage in {other.city} <span className="arrow">&rarr;</span>
           </a>
         </p>
       </section>

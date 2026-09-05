@@ -2,19 +2,24 @@
 
 import { useEffect, useRef, useState, type ElementType, type ReactNode } from "react";
 
-// Fades content up as it enters the viewport, via IntersectionObserver (no
-// scroll listeners). Honors prefers-reduced-motion through the .reveal CSS.
+type Direction = "up" | "left" | "right" | "scale" | "fade";
+
+// Fades content in as it enters the viewport, via IntersectionObserver (no
+// scroll listeners). `dir` picks the entrance vector; all of them, plus the
+// prefers-reduced-motion fallback, live in the .reveal rules in globals.css.
 export default function Reveal({
   children,
   as: Tag = "div",
   className = "",
   delay = 0,
+  dir = "up",
   id,
 }: {
   children: ReactNode;
   as?: ElementType;
   className?: string;
   delay?: number;
+  dir?: Direction;
   id?: string;
 }) {
   const ref = useRef<HTMLElement | null>(null);
@@ -43,6 +48,7 @@ export default function Reveal({
     <Comp
       ref={ref}
       id={id}
+      data-dir={dir}
       className={`reveal ${visible ? "is-visible" : ""} ${className}`}
       style={delay ? { transitionDelay: `${delay}ms` } : undefined}
     >

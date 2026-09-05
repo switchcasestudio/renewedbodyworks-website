@@ -37,7 +37,7 @@ export default function WhyMassagePage() {
           className="object-cover"
         />
         <div className="absolute inset-0 bg-pine-900/70" />
-        <div className="relative mx-auto max-w-3xl px-4 py-24 text-center sm:px-6 md:py-32">
+        <div className="stagger-in relative mx-auto max-w-3xl px-4 py-24 text-center sm:px-6 md:py-32">
           <h1 className="font-display text-4xl font-semibold text-cream sm:text-5xl md:text-6xl">
             Why massage?
           </h1>
@@ -50,7 +50,7 @@ export default function WhyMassagePage() {
 
       <section className="border-b border-pine/10 bg-cream-deep/50">
         <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 py-20 sm:px-6 lg:grid-cols-2">
-          <Reveal className="relative aspect-[4/3] overflow-hidden rounded-[24px] shadow-lg">
+          <Reveal dir="left" className="relative aspect-[4/3] overflow-hidden rounded-[24px] shadow-lg">
             <Image
               src="/images/shoulder-work-massage.jpg"
               alt="Hands working a client's shoulder during a massage session"
@@ -84,7 +84,7 @@ export default function WhyMassagePage() {
             <Reveal
               key={b.title}
               delay={(i % 3) * 80}
-              className="rounded-[18px] border border-pine/10 bg-white p-7 shadow-sm"
+              className="lift rounded-[18px] border border-pine/10 bg-white p-7 shadow-sm"
             >
               <span className="font-display text-4xl font-semibold text-amber">
                 {String(i + 1).padStart(2, "0")}
@@ -95,7 +95,7 @@ export default function WhyMassagePage() {
           ))}
         </div>
 
-        <Reveal className="mx-auto mt-12 max-w-2xl rounded-[18px] bg-pine px-8 py-10 text-center text-cream">
+        <Reveal dir="scale" className="mx-auto mt-12 max-w-2xl rounded-[18px] bg-pine px-8 py-10 text-center text-cream shadow-lg shadow-pine/20">
           <p className="font-display text-2xl leading-snug sm:text-3xl">
             And Scott&rsquo;s favorite reason, because it just feels good.
           </p>

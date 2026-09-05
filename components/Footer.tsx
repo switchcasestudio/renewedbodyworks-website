@@ -40,9 +40,9 @@ export default function Footer() {
               href={loc.bookingUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-3 inline-block text-sm font-semibold text-amber-soft hover:text-amber"
+              className="link-sweep arrow-link mt-3 inline-block text-sm font-semibold text-amber-soft hover:text-amber"
             >
-              Book in {loc.city} →
+              Book in {loc.city} <span className="arrow">&rarr;</span>
             </a>
           </div>
         ))}
@@ -51,12 +51,12 @@ export default function Footer() {
           <h2 className="font-display text-lg font-semibold text-cream">Contact</h2>
           <ul className="mt-3 space-y-2 text-sm text-cream/70">
             <li>
-              <a href={business.phoneHref} className="hover:text-amber-soft">
+              <a href={business.phoneHref} className="link-sweep hover:text-amber-soft">
                 {business.phone}
               </a>
             </li>
             <li>
-              <a href={business.emailHref} className="hover:text-amber-soft">
+              <a href={business.emailHref} className="link-sweep hover:text-amber-soft">
                 {business.email}
               </a>
             </li>
@@ -65,7 +65,7 @@ export default function Footer() {
             <ul className="space-y-1.5 text-sm">
               {nav.map((item) => (
                 <li key={item.href}>
-                  <Link href={item.href} className="text-cream/70 hover:text-cream">
+                  <Link href={item.href} className="link-sweep text-cream/70 hover:text-cream">
                     {item.label}
                   </Link>
                 </li>
@@ -84,7 +84,7 @@ export default function Footer() {
               href="https://switchcasestudio.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-medium text-cream/70 underline decoration-cream/30 underline-offset-2 hover:text-cream"
+              className="link-sweep font-medium text-cream/70 hover:text-cream"
             >
               Switch Case Studio
             </a>

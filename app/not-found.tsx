@@ -3,7 +3,7 @@ import { LinkButton } from "@/components/Buttons";
 
 export default function NotFound() {
   return (
-    <section className="mx-auto flex min-h-[60vh] max-w-xl flex-col items-center justify-center px-4 py-24 text-center">
+    <section className="stagger-in mx-auto flex min-h-[60vh] max-w-xl flex-col items-center justify-center px-4 py-24 text-center">
       <p className="eyebrow mb-3">Page not found</p>
       <h1 className="font-display text-4xl font-semibold text-pine-deep sm:text-5xl">
         Let&rsquo;s get you back on track
@@ -15,8 +15,11 @@ export default function NotFound() {
         <LinkButton href="/" variant="primary">Back home</LinkButton>
         <LinkButton href="/services" variant="outline">View services</LinkButton>
       </div>
-      <Link href="/contact" className="mt-6 text-sm font-semibold text-pine hover:text-pine-deep">
-        Get in touch →
+      <Link
+        href="/contact"
+        className="link-sweep arrow-link mt-6 text-sm font-semibold text-pine hover:text-pine-deep"
+      >
+        Get in touch <span className="arrow">&rarr;</span>
       </Link>
     </section>
   );

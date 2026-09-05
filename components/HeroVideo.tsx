@@ -1,11 +1,15 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 // React strips the `muted` attribute from SSR HTML (facebook/react#10389),
 // so the browser refuses to autoplay. Re-assert muted and kick playback on mount.
 export default function HeroVideo() {
   const ref = useRef<HTMLVideoElement>(null);
+  // The poster sits in its own layer and the video cross-fades over it once
+  // frames are actually rolling — a hard cut on first frame reads as a glitch.
+  // If autoplay stays blocked, `playing` never flips and the poster remains.
+  const [playing, setPlaying] = useState(false);
 
   useEffect(() => {
     const el = ref.current;
@@ -26,17 +30,23 @@ export default function HeroVideo() {
   }, []);
 
   return (
-    <video
-      ref={ref}
-      src="/videos/hero.mp4"
-      poster="/images/hero-deep-tissue.jpg"
-      autoPlay
-      muted
-      loop
-      playsInline
-      preload="auto"
-      aria-label="Scott Hartzell giving a therapeutic massage at Renewed Bodyworks"
-      className="absolute inset-0 h-full w-full object-cover"
-    />
+    <div
+      className="absolute inset-0 bg-cover bg-center"
+      style={{ backgroundImage: "url(/images/hero-deep-tissue.jpg)" }}
+    >
+      <video
+        ref={ref}
+        src="/videos/hero.mp4"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        onPlaying={() => setPlaying(true)}
+        data-playing={playing}
+        aria-label="Scott Hartzell giving a therapeutic massage at Renewed Bodyworks"
+        className="hero-video absolute inset-0 h-full w-full object-cover"
+      />
+    </div>
   );
 }

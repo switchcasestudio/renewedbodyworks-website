@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { locations } from "@/lib/business";
+import Reveal from "./Reveal";
 import { BookButton, PhoneLink } from "./Buttons";
 
 // Full-width closing CTA over the Oregon evergreen photo. Ties the page back to
@@ -15,7 +16,7 @@ export default function CtaBand() {
         className="object-cover"
       />
       <div className="absolute inset-0 bg-pine-900/80" />
-      <div className="relative mx-auto max-w-3xl px-4 py-20 text-center sm:px-6 md:py-28">
+      <Reveal className="relative mx-auto max-w-3xl px-4 py-20 text-center sm:px-6 md:py-28">
         <p className="eyebrow mb-3 text-amber-soft">Two Oregon studios</p>
         <h2 className="font-display text-3xl font-semibold text-cream sm:text-4xl md:text-[2.75rem]">
           Ready to feel renewed?
@@ -36,7 +37,7 @@ export default function CtaBand() {
             className="border-cream/40 text-cream hover:bg-cream hover:text-pine-deep"
           />
         </div>
-      </div>
+      </Reveal>
     </section>
   );
 }

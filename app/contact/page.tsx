@@ -3,6 +3,7 @@ import { business, locations } from "@/lib/business";
 import { pageMeta } from "@/lib/seo";
 import { breadcrumbSchema } from "@/lib/schema";
 import JsonLd from "@/components/JsonLd";
+import Reveal from "@/components/Reveal";
 import ContactForm from "@/components/ContactForm";
 import { BookButton } from "@/components/Buttons";
 
@@ -24,7 +25,7 @@ export default function ContactPage() {
       />
 
       <section className="hero-wash">
-        <div className="mx-auto max-w-3xl px-4 pt-16 pb-10 text-center sm:px-6 lg:pt-20">
+        <div className="stagger-in mx-auto max-w-3xl px-4 pt-16 pb-10 text-center sm:px-6 lg:pt-20">
           <p className="eyebrow mb-4">Get in touch</p>
           <h1 className="font-display text-4xl font-semibold text-pine-deep sm:text-5xl md:text-[3.5rem]">
             Book your session in Eugene or Portland
@@ -40,13 +41,13 @@ export default function ContactPage() {
         <div className="grid gap-10 lg:grid-cols-[1fr_1fr]">
           {/* Contact details + locations */}
           <div className="space-y-6">
-            <div className="rounded-[18px] border border-pine/10 bg-white p-6 shadow-sm sm:p-8">
+            <Reveal dir="left" className="lift rounded-[18px] border border-pine/10 bg-white p-6 shadow-sm sm:p-8">
               <h2 className="font-display text-2xl font-semibold text-pine-deep">Reach Scott directly</h2>
               <dl className="mt-4 space-y-3 text-[15px]">
                 <div className="flex items-center justify-between gap-4">
                   <dt className="text-muted">Phone</dt>
                   <dd>
-                    <a href={business.phoneHref} className="font-semibold text-pine hover:text-pine-deep">
+                    <a href={business.phoneHref} className="link-sweep font-semibold text-pine hover:text-pine-deep">
                       {business.phone}
                     </a>
                   </dd>
@@ -54,20 +55,25 @@ export default function ContactPage() {
                 <div className="flex items-center justify-between gap-4">
                   <dt className="text-muted">Email</dt>
                   <dd>
-                    <a href={business.emailHref} className="font-semibold text-pine hover:text-pine-deep">
+                    <a href={business.emailHref} className="link-sweep font-semibold text-pine hover:text-pine-deep">
                       {business.email}
                     </a>
                   </dd>
                 </div>
               </dl>
-            </div>
+            </Reveal>
 
-            {locations.map((loc) => {
+            {locations.map((loc, i) => {
               const mapQuery = encodeURIComponent(
                 `${business.name} ${loc.streetAddress} ${loc.addressLocality} ${loc.addressRegion}`,
               );
               return (
-                <div key={loc.key} className="rounded-[18px] border border-pine/10 bg-white p-6 shadow-sm sm:p-8">
+                <Reveal
+                  key={loc.key}
+                  dir="left"
+                  delay={(i + 1) * 90}
+                  className="lift rounded-[18px] border border-pine/10 bg-white p-6 shadow-sm sm:p-8"
+                >
                   <h2 className="font-display text-2xl font-semibold text-pine-deep">{loc.city}</h2>
                   <address className="mt-2 not-italic leading-relaxed text-muted">
                     {loc.streetAddress}
@@ -76,7 +82,10 @@ export default function ContactPage() {
                   </address>
                   <dl className="mt-4 space-y-1 text-sm">
                     {loc.hours.map((h) => (
-                      <div key={h.days} className="flex justify-between gap-3 border-b border-pine/5 py-1.5 last:border-0">
+                      <div
+                        key={h.days}
+                        className="row-hover -mx-2 flex justify-between gap-3 rounded border-b border-pine/5 px-2 py-1.5 last:border-0"
+                      >
                         <dt className="text-muted">{h.days}</dt>
                         <dd className="text-pine-deep">{h.label}</dd>
                       </div>
@@ -91,20 +100,20 @@ export default function ContactPage() {
                       href={`https://www.google.com/maps/search/?api=1&query=${mapQuery}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center rounded-full border border-pine/30 px-6 py-3 text-[15px] font-semibold text-pine transition-colors hover:bg-pine hover:text-cream"
+                      className="press raise inline-flex items-center justify-center rounded-full border border-pine/30 px-6 py-3 text-[15px] font-semibold text-pine hover:border-pine hover:bg-pine hover:text-cream"
                     >
                       Directions
                     </a>
                   </div>
-                </div>
+                </Reveal>
               );
             })}
           </div>
 
           {/* Form */}
-          <div className="lg:self-stretch">
+          <Reveal dir="right" className="lg:self-stretch">
             <ContactForm />
-          </div>
+          </Reveal>
         </div>
       </section>
     </>

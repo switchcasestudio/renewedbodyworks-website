@@ -27,7 +27,7 @@ export default function ServicesPage() {
       />
 
       <section className="hero-wash">
-        <div className="mx-auto max-w-3xl px-4 pt-16 pb-12 text-center sm:px-6 lg:pt-20">
+        <div className="stagger-in mx-auto max-w-3xl px-4 pt-16 pb-12 text-center sm:px-6 lg:pt-20">
           <p className="eyebrow mb-4">Services &amp; pricing</p>
           <h1 className="font-display text-4xl font-semibold text-pine-deep sm:text-5xl md:text-[3.5rem]">
             Massage &amp; bodywork in Eugene and Portland
@@ -41,13 +41,13 @@ export default function ServicesPage() {
 
       {/* Price list up front */}
       <section className="mx-auto max-w-3xl px-4 pb-4 sm:px-6">
-        <div className="rounded-[18px] border border-pine/10 bg-white p-6 shadow-sm sm:p-8">
+        <Reveal dir="scale" className="lift rounded-[18px] border border-pine/10 bg-white p-6 shadow-sm sm:p-8">
           <h2 className="font-display text-2xl font-semibold text-pine-deep">Price list</h2>
           <div className="mt-4">
             {services.map((s) => (
               <PriceRow key={s.slug} service={s} />
             ))}
-            <div className="flex items-baseline justify-between gap-4 py-3">
+            <div className="row-hover -mx-3 flex items-baseline justify-between gap-4 rounded-lg px-3 py-3">
               <span className="text-ink">{mobileService.name}</span>
               <span className="font-medium text-pine-deep">By quote</span>
             </div>
@@ -64,7 +64,7 @@ export default function ServicesPage() {
               Book in Portland
             </BookButton>
           </div>
-        </div>
+        </Reveal>
       </section>
 
       {/* Detailed service sections */}
@@ -75,15 +75,16 @@ export default function ServicesPage() {
               as="article"
               key={s.slug}
               id={s.slug}
-              className="grid gap-8 overflow-hidden rounded-[24px] border border-pine/10 bg-white shadow-sm md:grid-cols-2"
+              dir={i % 2 === 1 ? "right" : "left"}
+              className="lift group grid gap-8 overflow-hidden rounded-[24px] border border-pine/10 bg-white shadow-sm md:grid-cols-2"
             >
-              <div className={`relative min-h-[240px] ${i % 2 === 1 ? "md:order-last" : ""}`}>
+              <div className={`relative min-h-[240px] overflow-hidden ${i % 2 === 1 ? "md:order-last" : ""}`}>
                 <Image
                   src={s.image}
                   alt={s.imageAlt}
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover"
+                  className="img-zoom object-cover"
                 />
               </div>
               <div className="p-7 sm:p-9">
@@ -115,7 +116,7 @@ export default function ServicesPage() {
           ))}
 
           {/* Mobile & corporate */}
-          <Reveal as="article" className="rounded-[24px] border border-dashed border-pine/25 bg-cream-deep/40 p-8 text-center">
+          <Reveal as="article" dir="scale" className="lift rounded-[24px] border border-dashed border-pine/25 bg-cream-deep/40 p-8 text-center">
             <h2 className="font-display text-3xl font-semibold text-pine-deep">{mobileService.name}</h2>
             <p className="mx-auto mt-3 max-w-2xl leading-relaxed text-muted">{mobileService.description}</p>
           </Reveal>

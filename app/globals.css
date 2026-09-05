@@ -23,14 +23,51 @@
   --font-sans: var(--font-figtree), ui-sans-serif, system-ui, -apple-system, sans-serif;
 
   --radius-card: 18px;
+
+  /* Motion curves. The built-in CSS easings are too weak to read as
+     intentional; these are the strong variants used site-wide. Never ease-in
+     on UI — it delays the first frame, which is the frame users watch. */
+  --ease-snappy: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-smooth: cubic-bezier(0.77, 0, 0.175, 1);
+
+  --animate-fade-up: fade-up 0.65s var(--ease-snappy) both;
+  --animate-fade-in: fade-in 0.45s var(--ease-snappy) both;
+  --animate-pop-in: pop-in 0.35s var(--ease-snappy) both;
+  --animate-bar-up: bar-up 0.5s var(--ease-snappy) both;
+
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes pop-in {
+    from { opacity: 0; transform: scale(0.96); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes bar-up {
+    from { transform: translateY(100%); }
+    to { transform: none; }
+  }
 }
 
 :root {
   color-scheme: light;
+
+  /* Durations kept in one place so the whole site shares a rhythm. */
+  --dur-press: 160ms;
+  --dur-hover: 240ms;
+  --dur-card: 300ms;
+  --dur-reveal: 620ms;
+  --shadow-lift: 0 18px 40px -20px rgba(27, 51, 36, 0.32);
 }
 
 html {
   scroll-behavior: smooth;
+  /* Sticky header is 72px; keep anchored sections clear of it. */
+  scroll-padding-top: 88px;
 }
 
 body {
@@ -57,28 +94,222 @@ body {
   color: var(--color-pine);
 }
 
-/* Reveal-on-scroll: content fades/rises in as it enters the viewport. */
-.reveal {
-  opacity: 0;
-  transform: translateY(22px);
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
+/* ---------------------------------------------------------------------------
+   Motion primitives
+   Every hover effect is gated behind a real pointer — touch devices fire
+   :hover on tap, which leaves cards stuck in their hovered state.
+   Only transform/opacity/shadow animate, so nothing triggers layout.
+--------------------------------------------------------------------------- */
+
+/* Press feedback. Any pressable element gets it: the UI confirms it heard you. */
+.press {
+  transition:
+    transform var(--dur-press) var(--ease-snappy),
+    background-color var(--dur-hover) ease,
+    border-color var(--dur-hover) ease,
+    color var(--dur-hover) ease,
+    box-shadow var(--dur-hover) var(--ease-snappy);
 }
-.reveal.is-visible {
-  opacity: 1;
-  transform: none;
+.press:active {
+  transform: scale(0.97);
 }
 
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
+/* Card lift on hover. */
+.lift {
+  transition:
+    transform var(--dur-card) var(--ease-snappy),
+    box-shadow var(--dur-card) var(--ease-snappy),
+    border-color var(--dur-card) ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .lift:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lift);
+    border-color: rgba(53, 96, 67, 0.2);
   }
-  .reveal {
-    opacity: 1;
-    transform: none;
-    transition: none;
+  /* Buttons ride up a touch less than cards. */
+  .press.raise:hover {
+    transform: translateY(-1.5px);
   }
+  .press.raise:active {
+    transform: scale(0.97);
+  }
+}
+
+/* Underline that wipes in from the left and out to the right. */
+.link-sweep {
+  position: relative;
+  transition: color var(--dur-hover) ease;
+}
+.link-sweep::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -3px;
+  height: 1.5px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform var(--dur-hover) var(--ease-snappy);
+}
+@media (hover: hover) and (pointer: fine) {
+  .link-sweep:hover::after {
+    transform: scaleX(1);
+    transform-origin: left center;
+  }
+}
+.link-sweep[data-active="true"]::after {
+  transform: scaleX(1);
+}
+
+/* Trailing arrow that nudges forward on hover. */
+.arrow-link .arrow {
+  display: inline-block;
+  transition: transform var(--dur-hover) var(--ease-snappy);
+}
+@media (hover: hover) and (pointer: fine) {
+  .arrow-link:hover .arrow {
+    transform: translateX(4px);
+  }
+}
+
+/* Slow zoom on a card's photo while the card is hovered. */
+.img-zoom {
+  transition: transform 700ms var(--ease-snappy);
+}
+@media (hover: hover) and (pointer: fine) {
+  .group:hover .img-zoom {
+    transform: scale(1.05);
+  }
+}
+
+/* Row highlight for list-style rows (price list, hours). */
+.row-hover {
+  transition: background-color var(--dur-hover) ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .row-hover:hover {
+    background-color: rgba(53, 96, 67, 0.045);
+  }
+}
+
+/* Reveal-on-scroll: content fades/rises in as it enters the viewport.
+   Entrance uses the individual `translate`/`scale` properties rather than
+   `transform`, so a card can reveal AND hover-lift on the same element —
+   the two compose instead of overwriting each other. */
+.reveal {
+  opacity: 0;
+  translate: 0 20px;
+  transition:
+    opacity var(--dur-reveal) var(--ease-snappy),
+    translate var(--dur-reveal) var(--ease-snappy),
+    scale var(--dur-reveal) var(--ease-snappy);
+}
+.reveal:not(.is-visible) {
+  will-change: opacity, translate;
+}
+.reveal[data-dir="left"] { translate: -26px 0; }
+.reveal[data-dir="right"] { translate: 26px 0; }
+.reveal[data-dir="scale"] { translate: 0; scale: 0.965; }
+.reveal[data-dir="fade"] { translate: 0; }
+.reveal.is-visible {
+  opacity: 1;
+  translate: 0;
+  scale: 1;
+}
+
+/* A card that both reveals and lifts needs one transition declaration
+   covering both, or whichever rule comes last silently wins. */
+.reveal.lift {
+  transition:
+    opacity var(--dur-reveal) var(--ease-snappy),
+    translate var(--dur-reveal) var(--ease-snappy),
+    scale var(--dur-reveal) var(--ease-snappy),
+    transform var(--dur-card) var(--ease-snappy),
+    box-shadow var(--dur-card) var(--ease-snappy),
+    border-color var(--dur-card) ease;
+}
+
+/* On-load stagger for above-the-fold content (hero copy, CTA rows). */
+.stagger-in > * {
+  animation: var(--animate-fade-up);
+}
+.stagger-in > *:nth-child(1) { animation-delay: 40ms; }
+.stagger-in > *:nth-child(2) { animation-delay: 110ms; }
+.stagger-in > *:nth-child(3) { animation-delay: 180ms; }
+.stagger-in > *:nth-child(4) { animation-delay: 250ms; }
+.stagger-in > *:nth-child(5) { animation-delay: 320ms; }
+.stagger-in > *:nth-child(6) { animation-delay: 390ms; }
+
+/* Sticky header: gains depth once the page scrolls under it. */
+.site-header {
+  transition:
+    box-shadow var(--dur-card) var(--ease-snappy),
+    background-color var(--dur-card) ease,
+    border-color var(--dur-card) ease;
+}
+.site-header[data-scrolled="true"] {
+  box-shadow: 0 12px 28px -24px rgba(27, 51, 36, 0.55);
+  background-color: rgba(250, 252, 237, 0.94);
+}
+/* Logo compresses slightly instead of the header changing height —
+   a transform, so nothing below it reflows. */
+.header-mark {
+  transition: transform var(--dur-card) var(--ease-snappy);
+  transform-origin: left center;
+}
+.site-header[data-scrolled="true"] .header-mark {
+  transform: scale(0.93);
+}
+
+/* Hamburger → X, morphed rather than swapped. */
+.burger path {
+  transform-box: view-box;
+  transform-origin: 12px 12px;
+  transition:
+    transform 280ms var(--ease-snappy),
+    opacity 140ms ease;
+}
+.burger[data-open="true"] .burger-top { transform: translateY(5px) rotate(45deg); }
+.burger[data-open="true"] .burger-mid { opacity: 0; transform: scaleX(0.3); }
+.burger[data-open="true"] .burger-bot { transform: translateY(-5px) rotate(-45deg); }
+
+/* Collapsible region (mobile nav, FAQ answers). 0fr → 1fr animates height
+   without ever measuring it in JS. */
+.collapse {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition:
+    grid-template-rows var(--dur-card) var(--ease-snappy),
+    opacity 200ms ease;
+  opacity: 0;
+}
+.collapse[data-open="true"] {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+.collapse > * {
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Form fields: focus ring grows in rather than snapping. */
+.field {
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms var(--ease-snappy),
+    background-color 180ms ease;
+}
+
+/* Hero video fades up once it actually starts playing, so the poster→video
+   handoff isn't a hard cut. */
+.hero-video {
+  opacity: 0;
+  transition: opacity 900ms var(--ease-snappy);
+}
+.hero-video[data-playing="true"] {
+  opacity: 1;
 }
 
 /* Subtle grain-free paper texture via a soft radial wash on hero sections. */
@@ -86,4 +317,69 @@ body {
   background:
     radial-gradient(120% 120% at 80% -10%, rgba(234, 184, 115, 0.22), transparent 55%),
     radial-gradient(90% 90% at -10% 110%, rgba(142, 166, 127, 0.18), transparent 55%);
+}
+
+/* ---------------------------------------------------------------------------
+   Reduced motion — fewer and gentler, not zero. Opacity and colour survive
+   because they aid comprehension; every positional transform is dropped.
+--------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal,
+  .reveal.lift,
+  .reveal[data-dir="left"],
+  .reveal[data-dir="right"],
+  .reveal[data-dir="scale"] {
+    opacity: 1;
+    translate: none;
+    scale: none;
+    transition: none;
+  }
+  .stagger-in > * {
+    animation: none;
+  }
+  /* Entrance animations keep the fade, drop the travel. */
+  .animate-fade-up,
+  .animate-pop-in,
+  .animate-bar-up {
+    animation-name: fade-in;
+    animation-duration: 200ms;
+  }
+  .faq-icon {
+    transition: none;
+  }
+  .press:active,
+  .lift:hover,
+  .press.raise:hover,
+  .header-mark,
+  .site-header[data-scrolled="true"] .header-mark {
+    transform: none;
+  }
+  .link-sweep::after {
+    transition: opacity 150ms ease;
+    transform: scaleX(1);
+    opacity: 0;
+  }
+  .link-sweep:hover::after,
+  .link-sweep[data-active="true"]::after {
+    opacity: 1;
+  }
+  .arrow-link:hover .arrow {
+    transform: none;
+  }
+  /* The burger still morphs — it indicates state, it isn't decoration.
+     Only the travel time goes away. */
+  .burger path {
+    transition: none;
+  }
+  .img-zoom,
+  .group:hover .img-zoom {
+    transform: none;
+    transition: none;
+  }
+  .collapse {
+    transition: opacity 150ms ease;
+  }
 }
