@@ -1,12 +1,12 @@
 import Image from "next/image";
 import type { Metadata } from "next";
-import { services, mobileService, locations } from "@/lib/business";
+import { services, mobileService } from "@/lib/business";
 import { pageMeta } from "@/lib/seo";
 import { breadcrumbSchema } from "@/lib/schema";
 import JsonLd from "@/components/JsonLd";
 import Reveal from "@/components/Reveal";
 import CtaBand from "@/components/CtaBand";
-import { BookButton } from "@/components/Buttons";
+import { BookNow } from "@/components/Buttons";
 import { SectionHeading, PriceRow } from "@/components/ui";
 
 export const metadata: Metadata = pageMeta({
@@ -27,15 +27,30 @@ export default function ServicesPage() {
       />
 
       <section className="hero-wash">
-        <div className="stagger-in mx-auto max-w-3xl px-4 pt-16 pb-12 text-center sm:px-6 lg:pt-20">
-          <p className="eyebrow mb-4">Services &amp; pricing</p>
-          <h1 className="font-display text-4xl font-semibold text-pine-deep sm:text-5xl md:text-[3.5rem]">
-            Massage &amp; bodywork in Eugene and Portland
-          </h1>
-          <p className="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-muted">
-            Clear pricing, no surprises. Every service is available at both studios in 60 and 90
-            minute sessions unless noted.
-          </p>
+        <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 pt-16 pb-14 sm:px-6 lg:grid-cols-2 lg:pt-20">
+          <div className="stagger-in">
+            <p className="eyebrow mb-4">Services &amp; pricing</p>
+            <h1 className="font-display text-4xl font-semibold leading-[1.06] text-pine-deep sm:text-5xl md:text-6xl">
+              Massage &amp; bodywork in Eugene and Portland
+            </h1>
+            <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted">
+              Clear pricing, no surprises. Every service is available at both studios in 60 and 90
+              minute sessions unless noted.
+            </p>
+            <div className="mt-8">
+              <BookNow />
+            </div>
+          </div>
+          <Reveal dir="right" className="relative aspect-[5/4] overflow-hidden rounded-[24px] shadow-lg shadow-pine/15">
+            <Image
+              src="/images/renewed-difference-massage.webp"
+              alt="Therapist's hands working a client's lower back during a bodywork session"
+              fill
+              priority
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="object-cover"
+            />
+          </Reveal>
         </div>
       </section>
 
@@ -56,13 +71,8 @@ export default function ServicesPage() {
             Payment by cash, credit, or debit. New clients complete a short health intake so Scott can
             tailor the session.
           </p>
-          <div className="mt-6 flex flex-wrap gap-3 border-t border-pine/10 pt-6">
-            <BookButton href={locations[0].bookingUrl} event="book_click_eugene" variant="primary">
-              Book in Eugene
-            </BookButton>
-            <BookButton href={locations[1].bookingUrl} event="book_click_portland" variant="amber">
-              Book in Portland
-            </BookButton>
+          <div className="mt-6 border-t border-pine/10 pt-6">
+            <BookNow />
           </div>
         </Reveal>
       </section>
@@ -103,13 +113,8 @@ export default function ServicesPage() {
                     </span>
                   ))}
                 </div>
-                <div className="mt-6 flex flex-wrap gap-3">
-                  <BookButton href={locations[0].bookingUrl} event="book_click_eugene" variant="primary">
-                    Book in Eugene
-                  </BookButton>
-                  <BookButton href={locations[1].bookingUrl} event="book_click_portland" variant="outline">
-                    Book in Portland
-                  </BookButton>
+                <div className="mt-6">
+                  <BookNow />
                 </div>
               </div>
             </Reveal>

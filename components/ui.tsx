@@ -2,32 +2,18 @@ import Image from "next/image";
 import Link from "next/link";
 import Reveal from "./Reveal";
 import { BookButton } from "./Buttons";
-import { services, testimonials, business, type Location, type Service } from "@/lib/business";
+import { Stars, Star, GoogleG, MapPin, Clock } from "./icons";
+import { services, business, type Location, type Service } from "@/lib/business";
 
-export function Stars({ className = "" }: { className?: string }) {
-  return (
-    <span className={`inline-flex items-center gap-1 ${className}`} aria-hidden>
-      {[0, 1, 2, 3, 4].map((i) => (
-        <svg key={i} width="16" height="16" viewBox="0 0 20 20" fill="currentColor" className="text-amber">
-          <path d="M10 1.5l2.47 5.01 5.53.8-4 3.9.94 5.51L10 14.9l-4.95 2.6.94-5.5-4-3.9 5.53-.8z" />
-        </svg>
-      ))}
-    </span>
-  );
-}
+export { Stars, GoogleG } from "./icons";
 
-function GoogleG({ size = 16 }: { size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 48 48" aria-hidden>
-      <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z" />
-      <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z" />
-      <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z" />
-      <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z" />
-    </svg>
-  );
-}
-
-export function RatingBadge() {
+export function RatingBadge({
+  rating = business.rating.value,
+  count = business.rating.count,
+}: {
+  rating?: string;
+  count?: number;
+}) {
   return (
     <a
       href={business.googleReviewsUrl}
@@ -38,9 +24,85 @@ export function RatingBadge() {
     >
       <GoogleG />
       <Stars />
-      <span className="font-semibold">{business.rating.value}</span>
-      <span className="text-muted">· {business.rating.count} reviews</span>
+      <span className="font-semibold">{rating}</span>
+      <span className="text-muted">· {count} reviews</span>
     </a>
+  );
+}
+
+/**
+ * The three-up proof strip under the hero. The review count comes from the
+ * live Google data so it never drifts from the badge or the testimonials link.
+ */
+export function TrustStrip({
+  rating = business.rating.value,
+  count = business.rating.count,
+}: {
+  rating?: string;
+  count?: number;
+}) {
+  const items = [
+    {
+      key: "rating",
+      icon: <Star size={26} className="text-amber" />,
+      headline: `${rating} stars`,
+      body: `${count} reviews on Google`,
+      href: business.googleReviewsUrl,
+      external: true,
+    },
+    {
+      key: "locations",
+      icon: <MapPin size={26} className="text-pine" />,
+      headline: "2 studios",
+      body: "Eugene and Portland, Oregon",
+      href: "/contact",
+      external: false,
+    },
+    {
+      key: "sessions",
+      icon: <Clock size={26} className="text-pine" />,
+      headline: "60 & 90 min",
+      body: "Sessions from $120, or a $55 focused visit",
+      href: "/services",
+      external: false,
+    },
+  ];
+
+  return (
+    <section className="border-y border-pine/10 bg-cream-deep/60">
+      <div className="mx-auto grid max-w-6xl gap-2 px-4 py-6 sm:grid-cols-3 sm:px-6">
+        {items.map((item, i) => {
+          const inner = (
+            <>
+              <span className="shrink-0">{item.icon}</span>
+              <span>
+                <span className="block font-display text-2xl font-semibold text-pine-deep transition-colors duration-200 group-hover:text-pine">
+                  {item.headline}
+                </span>
+                <span className="mt-0.5 block text-sm text-muted transition-colors duration-200 group-hover:text-ink">
+                  {item.body}
+                </span>
+              </span>
+            </>
+          );
+          const className =
+            "trust-tile group flex items-center gap-3.5 rounded-2xl px-4 py-3 text-center sm:text-left";
+          return (
+            <Reveal key={item.key} delay={i * 90} dir="fade">
+              {item.external ? (
+                <a href={item.href} target="_blank" rel="noopener noreferrer" className={className}>
+                  {inner}
+                </a>
+              ) : (
+                <Link href={item.href} className={className}>
+                  {inner}
+                </Link>
+              )}
+            </Reveal>
+          );
+        })}
+      </div>
+    </section>
   );
 }
 
@@ -124,42 +186,6 @@ export function ServicesGrid() {
         <ServiceCard key={s.slug} service={s} index={i} />
       ))}
     </div>
-  );
-}
-
-export function Testimonials() {
-  return (
-    <>
-    <div className="grid gap-6 md:grid-cols-3">
-      {testimonials.map((t, i) => (
-        <Reveal
-          as="figure"
-          key={t.name}
-          delay={i * 90}
-          className="lift flex flex-col rounded-[18px] border border-pine/10 bg-white p-7 shadow-sm"
-        >
-          <Stars className="mb-4" />
-          <blockquote className="font-display text-xl leading-snug text-pine-deep">
-            &ldquo;{t.quote}&rdquo;
-          </blockquote>
-          <figcaption className="mt-5 text-sm text-muted">
-            <span className="font-semibold text-ink">{t.name}</span> · {t.role}
-          </figcaption>
-        </Reveal>
-      ))}
-    </div>
-    <div className="mt-8 text-center">
-      <a
-        href={business.googleReviewsUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="link-sweep arrow-link inline-flex items-center gap-2 font-semibold text-pine hover:text-pine-deep"
-      >
-        <GoogleG size={18} />
-        Read all {business.rating.count} reviews on Google <span className="arrow">&rarr;</span>
-      </a>
-    </div>
-    </>
   );
 }
 

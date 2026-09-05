@@ -11,6 +11,7 @@ declare global {
 export type ConversionEvent =
   | "phone_tap"
   | "contact_submit"
+  | "book_start"
   | "book_click_eugene"
   | "book_click_portland";
 

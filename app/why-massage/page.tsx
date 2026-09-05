@@ -13,7 +13,7 @@ export const metadata: Metadata = pageMeta({
   description:
     "From stress and pain relief to better sleep, flexibility, and faster recovery, see how regular massage therapy improves physical and mental health at Renewed Bodyworks.",
   path: "/why-massage",
-  image: "/images/why-massage-sunrise.jpg",
+  image: "/images/why-massage-sunrise.webp",
 });
 
 export default function WhyMassagePage() {
@@ -26,10 +26,10 @@ export default function WhyMassagePage() {
         ])}
       />
 
-      {/* Hero over sunrise image — matches the sunrise in Scott's logo */}
+      {/* Hero over sunrise image - matches the sunrise in Scott's logo */}
       <section className="relative isolate overflow-hidden">
         <Image
-          src="/images/why-massage-sunrise.jpg"
+          src="/images/why-massage-sunrise.webp"
           alt="Person meditating at sunrise, framed by warm morning light"
           fill
           priority
@@ -52,7 +52,7 @@ export default function WhyMassagePage() {
         <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 py-20 sm:px-6 lg:grid-cols-2">
           <Reveal dir="left" className="relative aspect-[4/3] overflow-hidden rounded-[24px] shadow-lg">
             <Image
-              src="/images/shoulder-work-massage.jpg"
+              src="/images/shoulder-work-massage.webp"
               alt="Hands working a client's shoulder during a massage session"
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"

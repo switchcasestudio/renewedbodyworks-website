@@ -1,15 +1,15 @@
 import Image from "next/image";
-import { locations } from "@/lib/business";
 import Reveal from "./Reveal";
-import { BookButton, PhoneLink } from "./Buttons";
+import { BookNow, PhoneLink } from "./Buttons";
 
 // Full-width closing CTA over the Oregon evergreen photo. Ties the page back to
-// Scott's pine/mountain brand mark.
+// Scott's pine/mountain brand mark. One booking button, not a Eugene/Portland
+// pair competing for the same click.
 export default function CtaBand() {
   return (
     <section className="relative isolate overflow-hidden">
       <Image
-        src="/images/oregon-evergreen-aerial.jpg"
+        src="/images/oregon-evergreen-aerial.webp"
         alt="Aerial view of an evergreen forest road in Oregon"
         fill
         sizes="100vw"
@@ -22,20 +22,12 @@ export default function CtaBand() {
           Ready to feel renewed?
         </h2>
         <p className="mx-auto mt-4 max-w-xl text-lg leading-relaxed text-cream/80">
-          Book online in Eugene or Portland, or text and Scott will find a time that works. New
-          clients start with a short intake so every session fits your body.
+          Book online at either studio, or text and Scott will find a time that works. New clients
+          start with a short intake so every session fits your body.
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-          <BookButton href={locations[0].bookingUrl} event="book_click_eugene" variant="amber">
-            Book in Eugene
-          </BookButton>
-          <BookButton href={locations[1].bookingUrl} event="book_click_portland" variant="amber">
-            Book in Portland
-          </BookButton>
-          <PhoneLink
-            variant="outline"
-            className="border-cream/40 text-cream hover:bg-cream hover:text-pine-deep"
-          />
+          <BookNow variant="amber" />
+          <PhoneLink variant="creamOutline" />
         </div>
       </Reveal>
     </section>

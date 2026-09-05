@@ -6,18 +6,20 @@ import { breadcrumbSchema } from "@/lib/schema";
 import JsonLd from "@/components/JsonLd";
 import Reveal from "@/components/Reveal";
 import CtaBand from "@/components/CtaBand";
-import { LinkButton } from "@/components/Buttons";
 import { RatingBadge } from "@/components/ui";
+import { getReviewData } from "@/lib/reviews";
 
 export const metadata: Metadata = pageMeta({
   title: "About Scott Hartzell, LMT & Renewed Bodyworks",
   description:
     "Renewed Bodyworks is the massage practice of Scott Hartzell, LMT, serving Eugene and Portland, Oregon with a holistic, client-led approach to therapeutic bodywork.",
   path: "/about",
-  image: "/images/oregon-forest-path.jpg",
+  image: "/images/scott-hartzell.webp",
 });
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const reviews = await getReviewData();
+
   return (
     <>
       <JsonLd
@@ -39,18 +41,24 @@ export default function AboutPage() {
               approach recognizes that true healing involves the mind, body, and spirit.
             </p>
             <div className="mt-8">
-              <RatingBadge />
+              <RatingBadge rating={reviews.rating} count={reviews.count} />
             </div>
           </div>
-          <Reveal dir="right" className="relative aspect-[5/4] overflow-hidden rounded-[24px] shadow-lg">
-            <Image
-              src="/images/oregon-forest-path.jpg"
-              alt="Sunlit path through a tall Oregon evergreen forest"
-              fill
-              priority
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-cover"
-            />
+          <Reveal dir="right" className="relative mx-auto w-full max-w-sm lg:mx-0 lg:ml-auto">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-[24px] shadow-lg shadow-pine/15">
+              <Image
+                src="/images/scott-hartzell.webp"
+                alt="Scott Hartzell, licensed massage therapist and owner of Renewed Bodyworks"
+                fill
+                priority
+                sizes="(max-width: 1024px) 90vw, 384px"
+                className="object-cover object-top"
+              />
+            </div>
+            <div className="lift absolute -bottom-5 -left-5 hidden rounded-2xl border border-pine/10 bg-cream px-5 py-3 shadow-md sm:block">
+              <p className="font-display text-xl font-semibold text-pine-deep">Scott Hartzell</p>
+              <p className="text-sm text-muted">Licensed Massage Therapist</p>
+            </div>
           </Reveal>
         </div>
       </section>
@@ -67,7 +75,7 @@ export default function AboutPage() {
           </p>
           <Reveal dir="scale" className="relative aspect-[3/2] overflow-hidden rounded-[24px] shadow-lg">
             <Image
-              src="/images/trigger-point-massage.jpg"
+              src="/images/trigger-point-massage.webp"
               alt="Close-up of a therapist's hand applying trigger-point pressure to a client's back"
               fill
               sizes="(max-width: 768px) 100vw, 768px"
@@ -99,38 +107,11 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Practitioner */}
-      <section className="bg-pine-900 text-cream">
-        <div className="mx-auto grid max-w-5xl items-center gap-10 px-4 py-16 sm:px-6 md:grid-cols-[0.8fr_1.2fr]">
-          <Reveal dir="left" className="relative mx-auto aspect-[4/5] w-full max-w-xs overflow-hidden rounded-[24px] shadow-lg md:mx-0">
-            <Image
-              src="/images/scott-hartzell.jpg"
-              alt="Scott Hartzell, licensed massage therapist and owner of Renewed Bodyworks"
-              fill
-              sizes="(max-width: 768px) 80vw, 320px"
-              className="object-cover"
-            />
-          </Reveal>
-          <div>
-            <h2 className="font-display text-3xl font-semibold sm:text-4xl">Scott Hartzell, LMT</h2>
-            <p className="mt-4 leading-relaxed text-cream/80">
-              Scott is the licensed massage therapist behind Renewed Bodyworks, practicing in both
-              Eugene and Portland. His approach blends various modalities to include Deep Tissue,
-              Trigger Point, Swedish, Sports, and assisted stretches in a single session, all chosen
-              around your goals rather than a fixed routine. Clients describe their experience as
-              intuitive, effective work that finds the source of the tension.
-            </p>
-            <p className="mt-4 text-sm text-cream/60">
-              Licensed Massage Therapist, State of Oregon. License number displayed at each studio
-              and on request.
-            </p>
-            <div className="mt-6">
-              <LinkButton href="/services" variant="amber">
-                See services
-              </LinkButton>
-            </div>
-          </div>
-        </div>
+      <section className="mx-auto max-w-3xl px-4 pb-16 sm:px-6">
+        <p className="border-t border-pine/10 pt-6 text-sm text-muted">
+          Licensed Massage Therapist, State of Oregon. License number displayed at each studio and
+          on request.
+        </p>
       </section>
 
       <CtaBand />

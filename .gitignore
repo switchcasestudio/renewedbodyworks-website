@@ -10,3 +10,7 @@ next-env.d.ts
 
 # Local Netlify folder
 .netlify
+
+# Master hero video (5.3MB). The 720p mp4/webm derivatives in
+# public/videos are what ship; keep the master local, out of the deploy.
+public/videos/hero.mp4

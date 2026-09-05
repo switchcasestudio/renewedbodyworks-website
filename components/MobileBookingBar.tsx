@@ -5,7 +5,7 @@ import { track } from "./track";
 
 // Persistent booking bar on mobile (audit UX-01: add a mobile booking bar).
 // Hidden on lg+ where the header CTA is always visible. It slides up once on
-// mount rather than snapping in — it always stays visible after that, because
+// mount rather than snapping in - it always stays visible after that, because
 // a CTA that hides itself is a CTA that gets missed.
 export default function MobileBookingBar() {
   const eugene = locations[0];

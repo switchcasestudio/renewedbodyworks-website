@@ -9,8 +9,10 @@ import Reveal from "@/components/Reveal";
 import HeroVideo from "@/components/HeroVideo";
 import Faq from "@/components/Faq";
 import CtaBand from "@/components/CtaBand";
-import { BookButton, LinkButton } from "@/components/Buttons";
-import { RatingBadge, SectionHeading, ServiceCard, Testimonials, LocationCard } from "@/components/ui";
+import Testimonials from "@/components/Testimonials";
+import { BookNow, LinkButton } from "@/components/Buttons";
+import { RatingBadge, SectionHeading, ServiceCard, TrustStrip, LocationCard } from "@/components/ui";
+import { getReviewData, seedFor } from "@/lib/reviews";
 
 export const metadata: Metadata = pageMeta({
   title: "Therapeutic Massage in Eugene & Portland, OR",
@@ -19,7 +21,11 @@ export const metadata: Metadata = pageMeta({
   path: "/",
 });
 
-export default function HomePage() {
+export default async function HomePage() {
+  // Live rating and review count, baked into the static HTML and refreshed
+  // daily, so the hero badge, trust strip and testimonials all agree.
+  const reviews = await getReviewData();
+
   return (
     <>
       <JsonLd
@@ -29,16 +35,20 @@ export default function HomePage() {
         ]}
       />
 
-      {/* Hero — full-bleed video background */}
-      <section className="relative isolate overflow-hidden bg-pine-900">
-        <div className="absolute inset-0 -z-20">
+      {/* Hero - full-bleed video background */}
+      {/* `isolate` plus a negative z-index used to bury the media behind the
+          section's own background, so the video never showed. Everything now
+          stacks forward from a solid ground layer. */}
+      <section className="relative isolate overflow-hidden">
+        <div className="absolute inset-0 bg-pine-900" />
+        <div className="absolute inset-0">
           <HeroVideo />
         </div>
         {/* Legibility overlay: heavier on the left where the copy sits */}
-        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-pine-900/90 via-pine-900/60 to-pine-900/25" />
-        <div className="absolute inset-x-0 bottom-0 -z-10 h-32 bg-gradient-to-t from-pine-900/70 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-pine-900/90 via-pine-900/55 to-pine-900/20" />
+        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-pine-900/70 to-transparent" />
 
-        <div className="mx-auto flex min-h-[78vh] max-w-6xl items-center px-4 py-20 sm:px-6 lg:py-28">
+        <div className="relative z-10 mx-auto flex min-h-[78vh] max-w-6xl items-center px-4 py-20 sm:px-6 lg:py-28">
           <div className="stagger-in max-w-2xl">
             <p className="eyebrow mb-4 text-amber-soft! [text-shadow:0_1px_8px_rgba(27,51,36,0.8)]">
               Eugene & Portland, Oregon
@@ -51,15 +61,13 @@ export default function HomePage() {
               deep tissue relief, sports recovery, or a calm reset.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-4">
-              <BookButton href={locations[0].bookingUrl} event="book_click_eugene" variant="amber">
-                Book a session
-              </BookButton>
+              <BookNow variant="amber" />
               <LinkButton href="/services" variant="creamOutline">
                 View services &amp; prices
               </LinkButton>
             </div>
             <div className="mt-8 flex flex-wrap items-center gap-4">
-              <RatingBadge />
+              <RatingBadge rating={reviews.rating} count={reviews.count} />
               <span className="text-sm font-medium text-cream/80">
                 Two studios · Eugene &amp; Portland
               </span>
@@ -68,28 +76,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Trust strip */}
-      <section className="border-y border-pine/10 bg-cream-deep/60">
-        <div className="mx-auto grid max-w-6xl gap-6 px-4 py-8 sm:grid-cols-3 sm:px-6">
-          {[
-            { k: "5.0", v: "Every Google review, five stars" },
-            { k: "2", v: "Oregon locations, Eugene & Portland" },
-            { k: "60 & 90 min", v: "Sessions from $120, or a $55 focused visit" },
-          ].map((item, i) => (
-            <Reveal
-              key={item.v}
-              delay={i * 90}
-              dir="fade"
-              className="text-center sm:text-left"
-            >
-              <p className="font-display text-3xl font-semibold text-pine">{item.k}</p>
-              <p className="mt-1 text-sm text-muted">{item.v}</p>
-            </Reveal>
-          ))}
-        </div>
-      </section>
+      <TrustStrip rating={reviews.rating} count={reviews.count} />
 
-      {/* Services preview — card grid */}
+      {/* Services preview - card grid */}
       <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
         <div className="mb-10 flex flex-wrap items-end justify-between gap-4">
           <SectionHeading
@@ -97,12 +86,9 @@ export default function HomePage() {
             title="Bodywork tailored to what your body needs"
             intro="Every session begins with your goals. Choose a focus, or let Scott build a plan with you."
           />
-          <Link
-            href="/services"
-            className="link-sweep arrow-link hidden text-sm font-semibold text-pine hover:text-pine-deep sm:block"
-          >
-            All services &amp; prices <span className="arrow">&rarr;</span>
-          </Link>
+          <LinkButton href="/services" variant="outline" className="hidden shrink-0 sm:inline-flex">
+            All services &amp; prices
+          </LinkButton>
         </div>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {services.slice(0, 3).map((s, i) => (
@@ -116,13 +102,13 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Meet Scott — about teaser */}
+      {/* Meet Scott - about teaser */}
       <section className="border-t border-pine/10 bg-cream-deep/50">
         <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 py-20 sm:px-6 lg:grid-cols-[0.85fr_1.15fr]">
           <Reveal dir="left" className="relative mx-auto w-full max-w-sm">
             <div className="relative aspect-[4/5] overflow-hidden rounded-[24px] shadow-lg shadow-pine/15">
               <Image
-                src="/images/scott-hartzell.jpg"
+                src="/images/scott-hartzell.webp"
                 alt="Scott Hartzell, licensed massage therapist and owner of Renewed Bodyworks"
                 fill
                 sizes="(max-width: 1024px) 100vw, 35vw"
@@ -155,12 +141,12 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* The Renewed difference — feature split */}
+      {/* The Renewed difference - feature split */}
       <section className="bg-pine-900 text-cream">
         <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 py-20 sm:px-6 lg:grid-cols-2">
           <Reveal dir="left" className="relative order-last aspect-[5/4] overflow-hidden rounded-[24px] shadow-lg lg:order-first lg:aspect-auto lg:self-stretch">
             <Image
-              src="/images/renewed-difference-massage.jpg"
+              src="/images/renewed-difference-massage.webp"
               alt="Close-up of two hands working a client's lower back"
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"
@@ -226,7 +212,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <SectionHeading title="What clients say" center />
           <div className="mt-10">
-            <Testimonials />
+            <Testimonials initial={seedFor(reviews)} />
           </div>
         </div>
       </section>

@@ -63,6 +63,16 @@ export default function ContactPage() {
               </dl>
             </Reveal>
 
+            <div id="book" className="scroll-mt-28">
+              <h2 className="font-display text-2xl font-semibold text-pine-deep">
+                Choose your studio
+              </h2>
+              <p className="mt-1.5 text-[15px] text-muted">
+                Both studios offer the full range of services. Pick the one that suits you and book
+                online, any time.
+              </p>
+            </div>
+
             {locations.map((loc, i) => {
               const mapQuery = encodeURIComponent(
                 `${business.name} ${loc.streetAddress} ${loc.addressLocality} ${loc.addressRegion}`,

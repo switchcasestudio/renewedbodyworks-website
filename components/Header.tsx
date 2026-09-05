@@ -85,7 +85,7 @@ export default function Header() {
           aria-expanded={open}
           aria-controls="mobile-nav"
         >
-          {/* Three lines that morph into an X — one element, no swap. */}
+          {/* Three lines that morph into an X - one element, no swap. */}
           <svg
             data-open={open}
             className="burger"
@@ -113,7 +113,7 @@ export default function Header() {
         inert={!open}
         className="collapse bg-cream lg:hidden"
       >
-        {/* The clipped child carries no border of its own — a border would keep
+        {/* The clipped child carries no border of its own - a border would keep
             the collapsed row 1px tall and leave a hairline under the header. */}
         <div>
           <ul className="mx-auto flex max-w-6xl flex-col border-t border-pine/10 px-4 py-2">

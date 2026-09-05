@@ -14,7 +14,7 @@ export const business = {
   practitioner: "Scott Hartzell, LMT",
   phone: "541-543-5215",
   phoneHref: "tel:+15415435215",
-  // Scott prefers texts over calls — CTAs labeled "Text" link here instead of tel:.
+  // Scott prefers texts over calls - CTAs labeled "Text" link here instead of tel:.
   smsHref: "sms:+15415435215",
   email: "Scott@RenewedBodyWorks.com",
   emailHref: "mailto:Scott@RenewedBodyWorks.com",
@@ -22,8 +22,12 @@ export const business = {
   // both MassageBook profiles, but the badge links to Google, so the number
   // shown must match what a visitor sees there.
   rating: { value: "5.0", count: 10 },
-  // Portland GBP listing (CID link) — opens the live Google reviews.
+  // Portland GBP listing (CID link), opens the live Google reviews.
   googleReviewsUrl: "https://maps.google.com/?cid=14423628157848241120",
+  // One booking CTA site-wide. MassageBook has no combined page for both
+  // studios, so the primary button lands on the contact page's booking block
+  // where the visitor picks Eugene or Portland and gets that studio's link.
+  bookingUrl: "/contact#book",
 } as const;
 
 export type Location = {
@@ -60,13 +64,13 @@ export const locations: Location[] = [
     bookingUrl: "https://www.massagebook.com/business/26781443",
     bookEvent: "book_click_eugene",
     hours: [
-      { days: "Thu – Fri", open: "08:00", close: "19:00", label: "8:00 AM – 7:00 PM" },
-      { days: "Saturday", open: "09:00", close: "16:00", label: "9:00 AM – 4:00 PM" },
+      { days: "Thu - Fri", open: "08:00", close: "19:00", label: "8:00 AM - 7:00 PM" },
+      { days: "Saturday", open: "09:00", close: "16:00", label: "9:00 AM - 4:00 PM" },
     ],
     hoursNote: "Text for appt outside these listed hours",
     blurb:
       "Scott's downtown Eugene studio on Willamette Street offers therapeutic and customized bodywork with full weekday availability.",
-    heroImage: "/images/location-massage.jpg",
+    heroImage: "/images/location-massage.webp",
     heroImageAlt: "Close-up of a therapeutic back massage session, hands working the shoulder",
   },
   {
@@ -81,13 +85,13 @@ export const locations: Location[] = [
     bookingUrl: "https://www.massagebook.com/therapists/renewed-bodyworks-llc",
     bookEvent: "book_click_portland",
     hours: [
-      { days: "Sunday", open: "12:00", close: "18:00", label: "12:00 PM – 6:00 PM" },
-      { days: "Mon – Wed", open: "08:00", close: "19:00", label: "8:00 AM – 7:00 PM" },
+      { days: "Sunday", open: "12:00", close: "18:00", label: "12:00 PM - 6:00 PM" },
+      { days: "Mon - Wed", open: "08:00", close: "19:00", label: "8:00 AM - 7:00 PM" },
     ],
     hoursNote: "Text for appt outside these listed hours",
     blurb:
       "Scott's Portland studio on N Williams Ave in the Boise neighborhood is rated 5.0 on Google and open early on weekdays.",
-    heroImage: "/images/studio-portland.jpg",
+    heroImage: "/images/studio-portland.webp",
     heroImageAlt: "The Renewed Bodyworks Portland studio with massage table, plants, and anatomy prints",
   },
 ];
@@ -114,9 +118,9 @@ export const services: Service[] = [
       { minutes: 60, price: 120 },
       { minutes: 90, price: 165 },
     ],
-    image: "/images/therapeutic-male.jpg",
+    image: "/images/shoulder-work-massage.webp",
     imageAlt:
-      "Male massage therapist working on a client's neck and shoulders during a therapeutic massage at Renewed Bodyworks",
+      "Therapist's hands working across a client's upper back and shoulders during a full body therapeutic massage",
     best: "Full-body tension relief and everyday recovery",
   },
   {
@@ -129,7 +133,7 @@ export const services: Service[] = [
       { minutes: 60, price: 120 },
       { minutes: 90, price: 165 },
     ],
-    image: "/images/bodywork-chest-massage.jpg",
+    image: "/images/bodywork-chest-massage.webp",
     imageAlt: "Therapist's hands working a client's chest and shoulders during a customized bodywork session",
     best: "Chronic pain, injury recovery, and mobility",
   },
@@ -143,8 +147,8 @@ export const services: Service[] = [
       { minutes: 60, price: 120 },
       { minutes: 90, price: 165 },
     ],
-    image: "/images/swedish-male.jpg",
-    imageAlt: "Relaxed client receiving long, calming massage strokes on the neck and shoulders",
+    image: "/images/swedish-oil.webp",
+    imageAlt: "Warm massage oil poured over a client's back before long, calming Swedish strokes",
     best: "Deep relaxation and stress relief",
   },
   {
@@ -157,7 +161,7 @@ export const services: Service[] = [
       { minutes: 60, price: 120 },
       { minutes: 90, price: 165 },
     ],
-    image: "/images/sports-knee-massage.jpg",
+    image: "/images/sports-knee-massage.webp",
     imageAlt: "Therapist performing focused sports massage work on a client's knee",
     best: "Athletes, events, and pre/post workout",
   },
@@ -168,7 +172,7 @@ export const services: Service[] = [
     description:
       "A concise, focused session to address a single area of tension or discomfort. Ideal when you are short on time but need targeted relief.",
     durations: [{ minutes: 30, price: 55 }],
-    image: "/images/aromatherapy-oil.jpg",
+    image: "/images/aromatherapy-oil.webp",
     imageAlt: "Therapist warming aromatherapy massage oil between their hands",
     best: "A quick reset for one trouble spot",
   },
@@ -179,7 +183,7 @@ export const services: Service[] = [
     description:
       "Seated chair massage for corporate settings, events, and retreats. A fast, clothed treatment that relieves neck, shoulder, and back tension without the need for a full session.",
     durations: [{ minutes: 30, price: 50 }],
-    image: "/images/ambiance-diffuser.jpg",
+    image: "/images/ambiance-diffuser.webp",
     imageAlt: "Calm treatment room ambiance with a reed diffuser, candles, and rolled towel",
     best: "Offices, corporate events, and retreats",
   },
@@ -206,7 +210,7 @@ export const benefits: { title: string; body: string }[] = [
 
 // Verbatim 5-star reviews pulled from the live Google Business Profile
 // (maps.google.com/?cid=14423628157848241120), fetched 2026-08-29. Only
-// reviews that name Scott — do not paraphrase, and re-verify before swapping.
+// reviews that name Scott - do not paraphrase, and re-verify before swapping.
 export const testimonials: { quote: string; name: string; role: string }[] = [
   {
     quote:

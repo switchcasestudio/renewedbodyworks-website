@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /* ---------------------------------------------------------------------------
-   Renewed Bodyworks design tokens — extracted from Scott's logo + brand CSS.
+   Renewed Bodyworks design tokens - extracted from Scott's logo + brand CSS.
    Pine green primary, cream ground, sunrise amber as the single accent,
    warm taupe + sage as supporting neutrals. One accent, locked page-wide.
 --------------------------------------------------------------------------- */
@@ -26,7 +26,7 @@
 
   /* Motion curves. The built-in CSS easings are too weak to read as
      intentional; these are the strong variants used site-wide. Never ease-in
-     on UI — it delays the first frame, which is the frame users watch. */
+     on UI - it delays the first frame, which is the frame users watch. */
   --ease-snappy: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-smooth: cubic-bezier(0.77, 0, 0.175, 1);
 
@@ -85,7 +85,7 @@ body {
   letter-spacing: -0.01em;
 }
 
-/* Small uppercase eyebrow — used sparingly (max 1 per 3 sections). */
+/* Small uppercase eyebrow - used sparingly (max 1 per 3 sections). */
 .eyebrow {
   font-size: 0.72rem;
   text-transform: uppercase;
@@ -96,7 +96,7 @@ body {
 
 /* ---------------------------------------------------------------------------
    Motion primitives
-   Every hover effect is gated behind a real pointer — touch devices fire
+   Every hover effect is gated behind a real pointer - touch devices fire
    :hover on tap, which leaves cards stuck in their hovered state.
    Only transform/opacity/shadow animate, so nothing triggers layout.
 --------------------------------------------------------------------------- */
@@ -184,6 +184,25 @@ body {
   }
 }
 
+/* Proof-strip tiles: the whole tile warms and lifts, so it reads as one
+   target rather than three loose lines of text. */
+.trust-tile {
+  transition:
+    transform var(--dur-card) var(--ease-snappy),
+    background-color var(--dur-hover) ease,
+    box-shadow var(--dur-card) var(--ease-snappy);
+}
+@media (hover: hover) and (pointer: fine) {
+  .trust-tile:hover {
+    transform: translateY(-2px);
+    background-color: rgba(255, 255, 255, 0.72);
+    box-shadow: 0 12px 28px -20px rgba(27, 51, 36, 0.4);
+  }
+}
+.trust-tile:active {
+  transform: scale(0.99);
+}
+
 /* Row highlight for list-style rows (price list, hours). */
 .row-hover {
   transition: background-color var(--dur-hover) ease;
@@ -196,7 +215,7 @@ body {
 
 /* Reveal-on-scroll: content fades/rises in as it enters the viewport.
    Entrance uses the individual `translate`/`scale` properties rather than
-   `transform`, so a card can reveal AND hover-lift on the same element —
+   `transform`, so a card can reveal AND hover-lift on the same element -
    the two compose instead of overwriting each other. */
 .reveal {
   opacity: 0;
@@ -253,7 +272,7 @@ body {
   box-shadow: 0 12px 28px -24px rgba(27, 51, 36, 0.55);
   background-color: rgba(250, 252, 237, 0.94);
 }
-/* Logo compresses slightly instead of the header changing height —
+/* Logo compresses slightly instead of the header changing height -
    a transform, so nothing below it reflows. */
 .header-mark {
   transition: transform var(--dur-card) var(--ease-snappy);
@@ -320,7 +339,7 @@ body {
 }
 
 /* ---------------------------------------------------------------------------
-   Reduced motion — fewer and gentler, not zero. Opacity and colour survive
+   Reduced motion - fewer and gentler, not zero. Opacity and colour survive
    because they aid comprehension; every positional transform is dropped.
 --------------------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
@@ -353,6 +372,8 @@ body {
   .press:active,
   .lift:hover,
   .press.raise:hover,
+  .trust-tile:hover,
+  .trust-tile:active,
   .header-mark,
   .site-header[data-scrolled="true"] .header-mark {
     transform: none;
@@ -369,7 +390,7 @@ body {
   .arrow-link:hover .arrow {
     transform: none;
   }
-  /* The burger still morphs — it indicates state, it isn't decoration.
+  /* The burger still morphs - it indicates state, it isn't decoration.
      Only the travel time goes away. */
   .burger path {
     transition: none;

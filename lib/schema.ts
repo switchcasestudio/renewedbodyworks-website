@@ -2,9 +2,9 @@ import { SITE_URL, business, locations, services, faqs, type Location } from "./
 
 // Maps our published hour labels to schema.org OpeningHoursSpecification.
 const dayMap: Record<string, string[]> = {
-  "Mon – Fri": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-  "Mon – Wed": ["Monday", "Tuesday", "Wednesday"],
-  "Thu – Fri": ["Thursday", "Friday"],
+  "Mon - Fri": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+  "Mon - Wed": ["Monday", "Tuesday", "Wednesday"],
+  "Thu - Fri": ["Thursday", "Friday"],
   Saturday: ["Saturday"],
   Sunday: ["Sunday"],
   Thursday: ["Thursday"],
@@ -21,18 +21,25 @@ function openingHours(loc: Location) {
     }));
 }
 
-// One MassageTherapy node per physical location (audit SEO-06).
-export function localBusinessSchema(loc: Location) {
+/**
+ * One MassageTherapy node per physical location (audit SEO-06).
+ * Pass the live rating so the structured data cannot drift from the number
+ * rendered on the page; falls back to the static figure when omitted.
+ */
+export function localBusinessSchema(
+  loc: Location,
+  rating: { value: string; count: number } = business.rating,
+) {
   return {
     "@context": "https://schema.org",
     "@type": ["MassageTherapy", "HealthAndBeautyBusiness", "LocalBusiness"],
     "@id": `${SITE_URL}/${loc.slug}#business`,
-    name: `${business.name} — ${loc.city}`,
-    image: `${SITE_URL}/images/hero-deep-tissue.jpg`,
+    name: `${business.name} - ${loc.city}`,
+    image: `${SITE_URL}/images/hero-poster.webp`,
     url: `${SITE_URL}/${loc.slug}`,
     telephone: business.phone,
     email: business.email,
-    priceRange: "$50–$165",
+    priceRange: "$50-$165",
     currenciesAccepted: "USD",
     paymentAccepted: "Cash, Credit Card, Debit Card",
     address: {
@@ -52,8 +59,8 @@ export function localBusinessSchema(loc: Location) {
     founder: { "@type": "Person", name: "Scott Hartzell", jobTitle: "Licensed Massage Therapist" },
     aggregateRating: {
       "@type": "AggregateRating",
-      ratingValue: business.rating.value,
-      reviewCount: business.rating.count,
+      ratingValue: rating.value,
+      reviewCount: rating.count,
       bestRating: "5",
     },
     makesOffer: services.flatMap((s) =>
@@ -118,7 +125,7 @@ export function organizationSchema() {
     legalName: business.legalName,
     url: SITE_URL,
     logo: `${SITE_URL}/renewed-logo.png`,
-    image: `${SITE_URL}/images/hero-deep-tissue.jpg`,
+    image: `${SITE_URL}/images/hero-poster.webp`,
     telephone: business.phone,
     email: business.email,
     location: locations.map((l) => ({ "@id": `${SITE_URL}/${l.slug}#business` })),

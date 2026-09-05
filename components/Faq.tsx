@@ -26,7 +26,7 @@ export default function Faq() {
                 >
                   {f.q}
                 </span>
-                {/* Plus rotates to a close cross — the same glyph, re-oriented. */}
+                {/* Plus rotates to a close cross - the same glyph, re-oriented. */}
                 <svg
                   width="22"
                   height="22"

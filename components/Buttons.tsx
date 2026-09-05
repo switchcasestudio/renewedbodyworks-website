@@ -16,7 +16,10 @@ const variants: Record<Variant, string> = {
   primary: "bg-pine text-cream hover:bg-pine-deep shadow-sm shadow-pine/20 hover:shadow-md hover:shadow-pine/25",
   amber: "bg-amber text-pine-900 hover:bg-amber-soft shadow-sm shadow-amber/25 hover:shadow-md hover:shadow-amber/30",
   outline: "border border-pine/30 text-pine hover:border-pine hover:bg-pine hover:text-cream",
-  creamOutline: "border border-cream/45 text-cream hover:border-cream hover:bg-cream hover:text-pine-deep",
+  // Over dark photography a 45% border and bare text nearly vanished. This
+  // carries its own translucent surface so it reads as a real button.
+  creamOutline:
+    "border border-cream/70 bg-cream/10 text-cream backdrop-blur-sm hover:border-cream hover:bg-cream hover:text-pine-deep",
   ghost: "text-pine hover:text-pine-deep underline underline-offset-4 decoration-pine/30 hover:decoration-pine",
 };
 
@@ -63,6 +66,31 @@ export function PhoneLink({
     >
       {children ?? `Text ${business.phone}`}
     </a>
+  );
+}
+
+/**
+ * The single booking call to action. One studio-agnostic button instead of a
+ * competing Eugene/Portland pair; the visitor picks the studio on the contact
+ * page, where each one carries its own live booking link.
+ */
+export function BookNow({
+  variant = "primary",
+  children = "Book your appointment",
+  className = "",
+}: {
+  variant?: Variant;
+  children?: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <Link
+      href={business.bookingUrl}
+      onClick={() => track("book_start")}
+      className={`${base} ${sizes} ${variants[variant]} ${className}`}
+    >
+      {children}
+    </Link>
   );
 }
 

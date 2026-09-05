@@ -92,7 +92,7 @@ export default function ContactForm() {
         <textarea id="message" name="message" required rows={5} className={`${field} min-h-[130px] flex-1 resize-none`} placeholder="Share what you're looking for, any areas of focus, and your availability." />
       </div>
 
-      {/* Honeypot — hidden from humans */}
+      {/* Honeypot - hidden from humans */}
       <div className="hidden" aria-hidden>
         <label htmlFor="company">Company</label>
         <input id="company" name="company" tabIndex={-1} autoComplete="off" />

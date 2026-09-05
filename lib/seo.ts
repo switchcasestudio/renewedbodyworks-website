@@ -7,7 +7,7 @@ export function pageMeta({
   title,
   description,
   path,
-  image = "/images/hero-deep-tissue.jpg",
+  image = "/images/hero-poster.webp",
 }: {
   title: string;
   description: string;

@@ -4,10 +4,13 @@ import { localBusinessSchema, breadcrumbSchema, faqSchema } from "@/lib/schema";
 import JsonLd from "./JsonLd";
 import Reveal from "./Reveal";
 import Faq from "./Faq";
+import Testimonials from "./Testimonials";
 import { BookButton, PhoneLink } from "./Buttons";
-import { RatingBadge, Testimonials } from "./ui";
+import { RatingBadge } from "./ui";
+import { getReviewData, seedFor } from "@/lib/reviews";
 
-export default function LocationPage({ loc }: { loc: Location }) {
+export default async function LocationPage({ loc }: { loc: Location }) {
+  const reviews = await getReviewData();
   const mapQuery = encodeURIComponent(
     `${business.name} ${loc.streetAddress} ${loc.addressLocality} ${loc.addressRegion}`,
   );
@@ -17,7 +20,7 @@ export default function LocationPage({ loc }: { loc: Location }) {
     <>
       <JsonLd
         data={[
-          localBusinessSchema(loc),
+          localBusinessSchema(loc, { value: reviews.rating, count: reviews.count }),
           faqSchema(),
           breadcrumbSchema([
             { name: "Home", path: "/" },
@@ -42,7 +45,7 @@ export default function LocationPage({ loc }: { loc: Location }) {
               <PhoneLink variant="outline" />
             </div>
             <div className="mt-8">
-              <RatingBadge />
+              <RatingBadge rating={reviews.rating} count={reviews.count} />
             </div>
           </div>
 
@@ -139,7 +142,7 @@ export default function LocationPage({ loc }: { loc: Location }) {
           <h2 className="mb-8 text-center font-display text-3xl font-semibold text-pine-deep sm:text-4xl">
             Trusted by clients across Oregon
           </h2>
-          <Testimonials />
+          <Testimonials initial={seedFor(reviews)} />
         </div>
       </section>
 
