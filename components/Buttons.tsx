@@ -36,14 +36,18 @@ export function BookButton({
   children?: React.ReactNode;
   className?: string;
 }) {
+  const cls = `${base} ${sizes} ${variants[variant]} ${className}`;
+  // Booking now lives on-site (/book, Mindbody embed), so same-tab navigation.
+  // External hrefs still open in a new tab.
+  if (href.startsWith("/")) {
+    return (
+      <Link href={href} onClick={() => track(event)} className={cls}>
+        {children}
+      </Link>
+    );
+  }
   return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      onClick={() => track(event)}
-      className={`${base} ${sizes} ${variants[variant]} ${className}`}
-    >
+    <a href={href} target="_blank" rel="noopener noreferrer" onClick={() => track(event)} className={cls}>
       {children}
     </a>
   );

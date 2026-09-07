@@ -68,8 +68,8 @@ export default function ContactPage() {
                 Choose your studio
               </h2>
               <p className="mt-1.5 text-[15px] text-muted">
-                Both studios offer the full range of services. Pick the one that suits you and book
-                online, any time.
+                Both studios offer the full range of services. Booking is online, any time, and you
+                pick the studio while you book.
               </p>
             </div>
 

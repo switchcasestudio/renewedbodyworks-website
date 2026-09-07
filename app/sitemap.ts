@@ -9,6 +9,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/why-massage", priority: 0.7 },
     { path: "/about", priority: 0.7 },
     { path: "/contact", priority: 0.8 },
+    { path: "/book", priority: 0.9 },
+    { path: "/register", priority: 0.5 },
   ];
   const locationPaths = locations.map((l) => ({ path: `/${l.slug}`, priority: 0.9 }));
 

@@ -36,14 +36,12 @@ export default function Footer() {
               ))}
             </ul>
             <p className="mt-1.5 text-xs text-cream/50">{loc.hoursNote}</p>
-            <a
+            <Link
               href={loc.bookingUrl}
-              target="_blank"
-              rel="noopener noreferrer"
               className="link-sweep arrow-link mt-3 inline-block text-sm font-semibold text-amber-soft hover:text-amber"
             >
               Book in {loc.city} <span className="arrow">&rarr;</span>
-            </a>
+            </Link>
           </div>
         ))}
 

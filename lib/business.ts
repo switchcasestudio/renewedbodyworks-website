@@ -24,10 +24,11 @@ export const business = {
   rating: { value: "5.0", count: 10 },
   // Portland GBP listing (CID link), opens the live Google reviews.
   googleReviewsUrl: "https://maps.google.com/?cid=14423628157848241120",
-  // One booking CTA site-wide. MassageBook has no combined page for both
-  // studios, so the primary button lands on the contact page's booking block
-  // where the visitor picks Eugene or Portland and gets that studio's link.
-  bookingUrl: "/contact#book",
+  // One booking CTA site-wide. Booking runs on Mindbody, whose embedded
+  // Appointments widget on /book covers both studios (the visitor picks
+  // Eugene or Portland inside the widget). Registration lives on /register.
+  bookingUrl: "/book",
+  registerUrl: "/register",
 } as const;
 
 export type Location = {
@@ -41,7 +42,7 @@ export type Location = {
   geo: { lat: number; lng: number };
   bookingUrl: string;
   bookEvent: "book_click_eugene" | "book_click_portland";
-  // Published booking hours (MassageBook). Presented as "by appointment".
+  // Published booking hours (Mindbody). Presented as "by appointment".
   hours: { days: string; open: string; close: string; label: string }[];
   // Shown under the hours list at every listing (footer, contact, location pages).
   hoursNote: string;
@@ -61,7 +62,7 @@ export const locations: Location[] = [
     addressRegion: "OR",
     postalCode: "97401",
     geo: { lat: 44.0489, lng: -123.0942 },
-    bookingUrl: "https://www.massagebook.com/business/26781443",
+    bookingUrl: "/book",
     bookEvent: "book_click_eugene",
     hours: [
       { days: "Thu - Fri", open: "08:00", close: "19:00", label: "8:00 AM - 7:00 PM" },
@@ -82,7 +83,7 @@ export const locations: Location[] = [
     addressRegion: "OR",
     postalCode: "97227",
     geo: { lat: 45.5370885, lng: -122.6671835 },
-    bookingUrl: "https://www.massagebook.com/therapists/renewed-bodyworks-llc",
+    bookingUrl: "/book",
     bookEvent: "book_click_portland",
     hours: [
       { days: "Sunday", open: "12:00", close: "18:00", label: "12:00 PM - 6:00 PM" },

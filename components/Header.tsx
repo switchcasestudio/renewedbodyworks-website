@@ -4,14 +4,13 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { nav, business, locations } from "@/lib/business";
+import { nav, business } from "@/lib/business";
 import { track } from "./track";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
-  const eugene = locations[0];
 
   // Header gains depth once content passes beneath it. Passive listener,
   // and state only flips at the threshold so React re-renders twice, not
@@ -66,15 +65,13 @@ export default function Header() {
               </Link>
             );
           })}
-          <a
-            href={eugene.bookingUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => track("book_click_eugene")}
+          <Link
+            href={business.bookingUrl}
+            onClick={() => track("book_start")}
             className="press raise rounded-full bg-pine px-5 py-2.5 text-[15px] font-semibold text-cream shadow-sm shadow-pine/20 hover:bg-pine-deep hover:shadow-md hover:shadow-pine/25"
           >
             Book now
-          </a>
+          </Link>
         </nav>
 
         <button
@@ -129,15 +126,13 @@ export default function Header() {
               </li>
             ))}
             <li className="flex gap-3 py-3">
-              <a
-                href={eugene.bookingUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => track("book_click_eugene")}
+              <Link
+                href={business.bookingUrl}
+                onClick={() => track("book_start")}
                 className="press flex-1 rounded-full bg-pine px-5 py-3 text-center font-semibold text-cream"
               >
                 Book now
-              </a>
+              </Link>
               <a
                 href={business.smsHref}
                 onClick={() => track("phone_tap")}
