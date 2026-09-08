@@ -10,7 +10,7 @@ import { RatingBadge } from "@/components/ui";
 import { getReviewData } from "@/lib/reviews";
 
 export const metadata: Metadata = pageMeta({
-  title: "About Scott Hartzell, LMT & Renewed Bodyworks",
+  title: "About Scott Hartzell, LMT",
   description:
     "Renewed Bodyworks is the massage practice of Scott Hartzell, LMT, serving Eugene and Portland, Oregon with a holistic, client-led approach to therapeutic bodywork.",
   path: "/about",

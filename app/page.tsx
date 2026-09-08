@@ -15,7 +15,10 @@ import { RatingBadge, SectionHeading, ServiceCard, TrustStrip, LocationCard } fr
 import { getReviewData, seedFor } from "@/lib/reviews";
 
 export const metadata: Metadata = pageMeta({
-  title: "Therapeutic Massage in Eugene & Portland, OR",
+  // The root page shares the root layout's segment, so `title.template` never
+  // runs on it and the brand has to be spelled out here (it matches the
+  // layout's `default`).
+  title: "Therapeutic Massage in Eugene & Portland, OR | Renewed Bodyworks",
   description:
     "Therapeutic, Swedish, sports, and customized massage in Eugene and Portland, Oregon with Scott Hartzell, LMT. Rated 5.0 on Google. Book online today.",
   path: "/",

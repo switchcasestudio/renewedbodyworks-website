@@ -49,6 +49,10 @@ export function TrustStrip({
       body: `${count} reviews on Google`,
       href: business.googleReviewsUrl,
       external: true,
+      // On phones the hero's Google badge sits directly above this tile and
+      // says the same thing. One of them has to go, and the badge is the one
+      // carrying the Google mark.
+      mobileHidden: true,
     },
     {
       key: "locations",
@@ -57,6 +61,7 @@ export function TrustStrip({
       body: "Eugene and Portland, Oregon",
       href: "/contact",
       external: false,
+      mobileHidden: false,
     },
     {
       key: "sessions",
@@ -65,6 +70,7 @@ export function TrustStrip({
       body: "Sessions from $120, or a $55 focused visit",
       href: "/services",
       external: false,
+      mobileHidden: false,
     },
   ];
 
@@ -88,7 +94,12 @@ export function TrustStrip({
           const className =
             "trust-tile group flex items-center gap-3.5 rounded-2xl px-4 py-3 text-left";
           return (
-            <Reveal key={item.key} delay={i * 90} dir="fade">
+            <Reveal
+              key={item.key}
+              delay={i * 90}
+              dir="fade"
+              className={item.mobileHidden ? "hidden sm:block" : ""}
+            >
               {item.external ? (
                 <a href={item.href} target="_blank" rel="noopener noreferrer" className={className}>
                   {inner}

@@ -15,12 +15,16 @@ export function pageMeta({
   image?: string;
 }): Metadata {
   const url = `${SITE_URL}${path}`;
+  // The `title.template` in the root layout only rewrites <title>; Open Graph
+  // and Twitter titles are passed through untouched, so brand them here rather
+  // than baking the suffix into each page's `title` and doubling it up.
+  const social = title.includes(business.name) ? title : `${title} | ${business.name}`;
   return {
     title,
     description,
     alternates: { canonical: url },
     openGraph: {
-      title,
+      title: social,
       description,
       url,
       siteName: business.name,
@@ -30,7 +34,7 @@ export function pageMeta({
     },
     twitter: {
       card: "summary_large_image",
-      title,
+      title: social,
       description,
       images: [`${SITE_URL}${image}`],
     },

@@ -6,7 +6,7 @@ import JsonLd from "@/components/JsonLd";
 import { MindbodyRegistration } from "@/components/Mindbody";
 
 export const metadata: Metadata = pageMeta({
-  title: "Create Your Account | Renewed Bodyworks",
+  title: "Create Your Account",
   description:
     "Create your Renewed Bodyworks client account to book massage in Eugene or Portland, Oregon and check out faster next time.",
   path: "/register",
