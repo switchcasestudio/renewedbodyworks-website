@@ -86,7 +86,7 @@ export function TrustStrip({
             </>
           );
           const className =
-            "trust-tile group flex items-center gap-3.5 rounded-2xl px-4 py-3 text-center sm:text-left";
+            "trust-tile group flex items-center gap-3.5 rounded-2xl px-4 py-3 text-left";
           return (
             <Reveal key={item.key} delay={i * 90} dir="fade">
               {item.external ? (

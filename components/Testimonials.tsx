@@ -76,7 +76,10 @@ export default function Testimonials({ initial }: { initial: ReviewSeed }) {
     <>
       <div className="relative">
         <div
-          className="grid gap-6 md:grid-cols-3"
+          // Server-rendered HTML carries three quotes for crawlers, but only
+          // one fits on a phone. CSS hides the extra two from the first paint,
+          // so hydration dropping to one card shifts nothing.
+          className="grid gap-6 md:grid-cols-3 [&>figure:nth-child(n+2)]:hidden md:[&>figure:nth-child(n+2)]:flex"
           aria-live="polite"
           aria-busy={loading}
         >

@@ -71,6 +71,10 @@ html {
 }
 
 body {
+  /* `clip`, not `hidden`: it contains the reveal transforms' horizontal
+     overshoot without creating a scroll container, so the sticky header and
+     `scroll-behavior: smooth` keep working. */
+  overflow-x: clip;
   background-color: var(--color-cream);
   color: var(--color-ink);
   font-family: var(--font-sans);
@@ -230,6 +234,12 @@ body {
 }
 .reveal[data-dir="left"] { translate: -26px 0; }
 .reveal[data-dir="right"] { translate: 26px 0; }
+/* On phones a 26px sideways slide buys nothing and pushes full-bleed blocks
+   past the viewport edge, so those reveals rise instead. */
+@media (max-width: 767px) {
+  .reveal[data-dir="left"],
+  .reveal[data-dir="right"] { translate: 0 20px; }
+}
 .reveal[data-dir="scale"] { translate: 0; scale: 0.965; }
 .reveal[data-dir="fade"] { translate: 0; }
 .reveal.is-visible {
@@ -296,7 +306,7 @@ body {
 
 /* Collapsible region (mobile nav, FAQ answers). 0fr → 1fr animates height
    without ever measuring it in JS. */
-.collapse {
+.disclose {
   display: grid;
   grid-template-rows: 0fr;
   transition:
@@ -304,11 +314,11 @@ body {
     opacity 200ms ease;
   opacity: 0;
 }
-.collapse[data-open="true"] {
+.disclose[data-open="true"] {
   grid-template-rows: 1fr;
   opacity: 1;
 }
-.collapse > * {
+.disclose > * {
   min-height: 0;
   overflow: hidden;
 }
@@ -400,7 +410,7 @@ body {
     transform: none;
     transition: none;
   }
-  .collapse {
+  .disclose {
     transition: opacity 150ms ease;
   }
 }

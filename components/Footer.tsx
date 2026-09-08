@@ -47,23 +47,23 @@ export default function Footer() {
 
         <div>
           <h2 className="font-display text-lg font-semibold text-cream">Contact</h2>
-          <ul className="mt-3 space-y-2 text-sm text-cream/70">
+          <ul className="mt-3 space-y-1 text-sm text-cream/70">
             <li>
-              <a href={business.phoneHref} className="link-sweep hover:text-amber-soft">
+              <a href={business.phoneHref} className="link-sweep inline-block py-1 hover:text-amber-soft">
                 {business.phone}
               </a>
             </li>
             <li>
-              <a href={business.emailHref} className="link-sweep hover:text-amber-soft">
+              <a href={business.emailHref} className="link-sweep inline-block py-1 hover:text-amber-soft">
                 {business.email}
               </a>
             </li>
           </ul>
           <nav className="mt-5" aria-label="Footer">
-            <ul className="space-y-1.5 text-sm">
+            <ul className="text-sm">
               {nav.map((item) => (
                 <li key={item.href}>
-                  <Link href={item.href} className="link-sweep text-cream/70 hover:text-cream">
+                  <Link href={item.href} className="link-sweep inline-block py-1.5 text-cream/70 hover:text-cream">
                     {item.label}
                   </Link>
                 </li>

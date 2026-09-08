@@ -44,7 +44,7 @@ export default function Faq() {
                 </svg>
               </button>
             </h3>
-            <div id={`faq-panel-${i}`} data-open={isOpen} className="collapse">
+            <div id={`faq-panel-${i}`} data-open={isOpen} className="disclose">
               <div>
                 <p className="px-6 pb-5 text-[15px] leading-relaxed text-muted">{f.a}</p>
               </div>

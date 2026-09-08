@@ -108,7 +108,7 @@ export default function Header() {
         data-open={open}
         aria-label="Mobile"
         inert={!open}
-        className="collapse bg-cream lg:hidden"
+        className="disclose bg-cream lg:hidden"
       >
         {/* The clipped child carries no border of its own - a border would keep
             the collapsed row 1px tall and leave a hairline under the header. */}

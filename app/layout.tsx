@@ -52,7 +52,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${display.variable} ${sans.variable}`}>
-      <body className="min-h-dvh pb-20 lg:pb-0">
+      <body className="min-h-dvh">
         <JsonLd data={[organizationSchema(), personSchema()]} />
         <a
           href="#main"

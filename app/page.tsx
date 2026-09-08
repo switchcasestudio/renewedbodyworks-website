@@ -48,7 +48,7 @@ export default async function HomePage() {
         <div className="absolute inset-0 bg-gradient-to-r from-pine-900/90 via-pine-900/55 to-pine-900/20" />
         <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-pine-900/70 to-transparent" />
 
-        <div className="relative z-10 mx-auto flex min-h-[78vh] max-w-6xl items-center px-4 py-20 sm:px-6 lg:py-28">
+        <div className="relative z-10 mx-auto flex min-h-[78svh] max-w-6xl items-center px-4 pb-28 pt-10 sm:px-6 sm:pt-16 lg:py-28">
           <div className="stagger-in max-w-2xl">
             <p className="eyebrow mb-4 text-amber-soft! [text-shadow:0_1px_8px_rgba(27,51,36,0.8)]">
               Eugene & Portland, Oregon
@@ -60,17 +60,14 @@ export default async function HomePage() {
               Custom sessions with Scott Hartzell, LMT, built around your body, whether you need
               deep tissue relief, sports recovery, or a calm reset.
             </p>
-            <div className="mt-8 flex flex-wrap items-center gap-4">
+            <div className="mt-7 flex flex-wrap items-center gap-4 sm:mt-8">
               <BookNow variant="amber" />
               <LinkButton href="/services" variant="creamOutline">
                 View services &amp; prices
               </LinkButton>
             </div>
-            <div className="mt-8 flex flex-wrap items-center gap-4">
+            <div className="mt-6 sm:mt-8">
               <RatingBadge rating={reviews.rating} count={reviews.count} />
-              <span className="text-sm font-medium text-cream/80">
-                Two studios · Eugene &amp; Portland
-              </span>
             </div>
           </div>
         </div>
