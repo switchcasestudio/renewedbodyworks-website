@@ -88,7 +88,7 @@ export default function Footer() {
             </a>
             , a web design &amp; automation studio in Portland, OR
           </p>
-          <p>Licensed Massage Therapy · State of Oregon</p>
+          <p>Oregon LMT License #{business.license}</p>
         </div>
       </div>
     </footer>

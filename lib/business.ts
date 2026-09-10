@@ -12,6 +12,8 @@ export const business = {
   legalName: "Renewed Bodyworks LLC",
   tagline: "Unwind, Heal, Restore",
   practitioner: "Scott Hartzell, LMT",
+  // Oregon Board of Massage Therapists license (audit TRUST-01).
+  license: "28785",
   phone: "541-543-5215",
   phoneHref: "tel:+15415435215",
   // Scott prefers texts over calls - CTAs labeled "Text" link here instead of tel:.

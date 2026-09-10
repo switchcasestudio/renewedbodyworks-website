@@ -86,6 +86,12 @@ export function personSchema() {
     name: "Scott Hartzell",
     jobTitle: "Licensed Massage Therapist",
     worksFor: { "@type": "Organization", name: business.legalName },
+    hasCredential: {
+      "@type": "EducationalOccupationalCredential",
+      credentialCategory: "license",
+      name: `Oregon Licensed Massage Therapist #${business.license}`,
+      recognizedBy: { "@type": "Organization", name: "Oregon Board of Massage Therapists" },
+    },
     telephone: business.phone,
     email: business.email,
   };
