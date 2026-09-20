@@ -52,6 +52,8 @@ export type Location = {
   // Location-page hero photo + alt text.
   heroImage: string;
   heroImageAlt: string;
+  // Optional "Inside the studio" photos; first one is rendered large.
+  gallery?: { src: string; alt: string }[];
 };
 
 export const locations: Location[] = [
@@ -73,8 +75,35 @@ export const locations: Location[] = [
     hoursNote: "Text for appt outside these listed hours",
     blurb:
       "Scott's downtown Eugene studio on Willamette Street offers therapeutic and customized bodywork with full weekday availability.",
-    heroImage: "/images/location-massage.webp",
-    heroImageAlt: "Close-up of a therapeutic back massage session, hands working the shoulder",
+    heroImage: "/images/eugene-clinic-pine-mural.webp",
+    heroImageAlt:
+      "Massage table facing a painted evergreen mural in the Renewed Bodyworks Eugene studio",
+    gallery: [
+      {
+        src: "/images/eugene-clinic-treatment-room-wide-2.webp",
+        alt: "Eugene treatment room with massage table, anatomy art wall, and pine mural",
+      },
+      {
+        src: "/images/eugene-clinic-brick-window.webp",
+        alt: "Exposed brick wall and sunlit window with hanging plants in the Eugene studio",
+      },
+      {
+        src: "/images/eugene-clinic-corner-view.webp",
+        alt: "Corner view of the Eugene treatment room with plants and a painted forest mural",
+      },
+      {
+        src: "/images/eugene-clinic-treatment-room-wide-1.webp",
+        alt: "Massage table beside a shelf of plants and framed anatomy prints",
+      },
+      {
+        src: "/images/eugene-clinic-table-window-pov.webp",
+        alt: "View from the head of the massage table toward a window filled with hanging plants",
+      },
+      {
+        src: "/images/eugene-clinic-treatment-room-wide-3.webp",
+        alt: "Eugene studio with cedar-paneled walls, brick accent, and a central anatomy canvas",
+      },
+    ],
   },
   {
     key: "portland",

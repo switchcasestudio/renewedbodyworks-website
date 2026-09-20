@@ -119,6 +119,42 @@ export default async function LocationPage({ loc }: { loc: Location }) {
         </div>
       </section>
 
+      {/* Studio gallery */}
+      {loc.gallery && loc.gallery.length > 0 && (
+        <section className="mx-auto max-w-6xl px-4 pb-16 sm:px-6">
+          <h2 className="mb-8 font-display text-3xl font-semibold text-pine-deep sm:text-4xl">
+            Inside the {loc.city} studio
+          </h2>
+          <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3">
+            {loc.gallery.map((img, i) => (
+              <Reveal
+                key={img.src}
+                delay={(i % 3) * 80}
+                className={`relative aspect-[4/3] overflow-hidden rounded-[18px] shadow-md shadow-pine/10 ${
+                  i === 0
+                    ? "col-span-2 md:row-span-2 md:aspect-auto"
+                    : i === loc.gallery!.length - 1 && i % 2 === 1
+                      ? "col-span-2 md:col-span-1"
+                      : ""
+                }`}
+              >
+                <Image
+                  src={img.src}
+                  alt={img.alt}
+                  fill
+                  sizes={
+                    i === 0
+                      ? "(max-width: 768px) 100vw, 66vw"
+                      : "(max-width: 768px) 50vw, 33vw"
+                  }
+                  className="object-cover"
+                />
+              </Reveal>
+            ))}
+          </div>
+        </section>
+      )}
+
       {/* Map */}
       <section className="mx-auto max-w-6xl px-4 pb-16 sm:px-6">
         <h2 className="mb-8 font-display text-3xl font-semibold text-pine-deep sm:text-4xl">
