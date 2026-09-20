@@ -52,6 +52,8 @@ export type Location = {
   // Location-page hero photo + alt text.
   heroImage: string;
   heroImageAlt: string;
+  // Full-bleed hero with a text overlay instead of the split text/photo layout.
+  heroOverlay?: boolean;
   // Optional "Inside the studio" photos; first one is rendered large.
   gallery?: { src: string; alt: string }[];
 };
@@ -75,21 +77,18 @@ export const locations: Location[] = [
     hoursNote: "Text for appt outside these listed hours",
     blurb:
       "Scott's downtown Eugene studio on Willamette Street offers therapeutic and customized bodywork with full weekday availability.",
-    heroImage: "/images/eugene-clinic-pine-mural.webp",
+    heroImage: "/images/eugene-clinic-treatment-room-wide-2.webp",
     heroImageAlt:
-      "Massage table facing a painted evergreen mural in the Renewed Bodyworks Eugene studio",
+      "Treatment room in the Renewed Bodyworks Eugene studio with massage table, anatomy art wall, and pine mural",
+    heroOverlay: true,
     gallery: [
       {
-        src: "/images/eugene-clinic-treatment-room-wide-2.webp",
-        alt: "Eugene treatment room with massage table, anatomy art wall, and pine mural",
+        src: "/images/eugene-clinic-corner-view.webp",
+        alt: "Corner view of the Eugene treatment room with plants and a painted forest mural",
       },
       {
         src: "/images/eugene-clinic-brick-window.webp",
         alt: "Exposed brick wall and sunlit window with hanging plants in the Eugene studio",
-      },
-      {
-        src: "/images/eugene-clinic-corner-view.webp",
-        alt: "Corner view of the Eugene treatment room with plants and a painted forest mural",
       },
       {
         src: "/images/eugene-clinic-treatment-room-wide-1.webp",
@@ -102,6 +101,10 @@ export const locations: Location[] = [
       {
         src: "/images/eugene-clinic-treatment-room-wide-3.webp",
         alt: "Eugene studio with cedar-paneled walls, brick accent, and a central anatomy canvas",
+      },
+      {
+        src: "/images/eugene-clinic-pine-mural.webp",
+        alt: "Massage table facing a painted evergreen mural in the Eugene studio",
       },
     ],
   },

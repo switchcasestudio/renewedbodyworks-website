@@ -30,37 +30,76 @@ export default async function LocationPage({ loc }: { loc: Location }) {
       />
 
       {/* Hero */}
-      <section className="hero-wash">
-        <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 pt-16 pb-14 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:pt-20">
-          <div className="stagger-in">
-            <p className="eyebrow mb-4">{loc.addressLocality}, Oregon</p>
-            <h1 className="font-display text-4xl font-semibold leading-[1.05] text-pine-deep sm:text-5xl md:text-6xl">
-              Massage therapy in {loc.city}, Oregon
-            </h1>
-            <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted">{loc.blurb}</p>
-            <div className="mt-8 flex flex-wrap items-center gap-4">
-              <BookButton href={loc.bookingUrl} event={loc.bookEvent} variant="primary">
-                Book in {loc.city}
-              </BookButton>
-              <PhoneLink variant="outline" />
-            </div>
-            <div className="mt-8">
-              <RatingBadge rating={reviews.rating} count={reviews.count} />
+      {loc.heroOverlay ? (
+        <section className="relative isolate overflow-hidden">
+          <div className="absolute inset-0 bg-pine-900" />
+          <Image
+            src={loc.heroImage}
+            alt={loc.heroImageAlt}
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-[40%_center]"
+          />
+          {/* Legibility overlay: heavier on the left where the copy sits */}
+          <div className="absolute inset-0 bg-gradient-to-r from-pine-900/90 via-pine-900/55 to-pine-900/20" />
+          <div className="absolute inset-0 bg-pine-900/30 lg:hidden" />
+          <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-pine-900/70 to-transparent" />
+
+          <div className="relative z-10 mx-auto flex min-h-[78svh] max-w-6xl items-center px-4 pb-24 pt-12 sm:px-6 sm:pt-16 lg:py-28">
+            <div className="stagger-in max-w-2xl">
+              <p className="eyebrow mb-4 text-amber-soft! [text-shadow:0_1px_8px_rgba(27,51,36,0.8)]">
+                {loc.addressLocality}, Oregon
+              </p>
+              <h1 className="font-display text-4xl font-semibold leading-[1.05] text-cream sm:text-5xl md:text-6xl">
+                Massage therapy in {loc.city}, Oregon
+              </h1>
+              <p className="mt-5 max-w-xl text-lg leading-relaxed text-cream/85">{loc.blurb}</p>
+              <div className="mt-8 flex flex-wrap items-center gap-4">
+                <BookButton href={loc.bookingUrl} event={loc.bookEvent} variant="amber">
+                  Book in {loc.city}
+                </BookButton>
+                <PhoneLink variant="creamOutline" />
+              </div>
+              <div className="mt-8">
+                <RatingBadge rating={reviews.rating} count={reviews.count} />
+              </div>
             </div>
           </div>
+        </section>
+      ) : (
+        <section className="hero-wash">
+          <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 pt-16 pb-14 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:pt-20">
+            <div className="stagger-in">
+              <p className="eyebrow mb-4">{loc.addressLocality}, Oregon</p>
+              <h1 className="font-display text-4xl font-semibold leading-[1.05] text-pine-deep sm:text-5xl md:text-6xl">
+                Massage therapy in {loc.city}, Oregon
+              </h1>
+              <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted">{loc.blurb}</p>
+              <div className="mt-8 flex flex-wrap items-center gap-4">
+                <BookButton href={loc.bookingUrl} event={loc.bookEvent} variant="primary">
+                  Book in {loc.city}
+                </BookButton>
+                <PhoneLink variant="outline" />
+              </div>
+              <div className="mt-8">
+                <RatingBadge rating={reviews.rating} count={reviews.count} />
+              </div>
+            </div>
 
-          <Reveal dir="right" className="relative aspect-[4/5] overflow-hidden rounded-[24px] shadow-lg shadow-pine/15">
-            <Image
-              src={loc.heroImage}
-              alt={loc.heroImageAlt}
-              fill
-              priority
-              sizes="(max-width: 1024px) 100vw, 45vw"
-              className="object-cover"
-            />
-          </Reveal>
-        </div>
-      </section>
+            <Reveal dir="right" className="relative aspect-[4/5] overflow-hidden rounded-[24px] shadow-lg shadow-pine/15">
+              <Image
+                src={loc.heroImage}
+                alt={loc.heroImageAlt}
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 45vw"
+                className="object-cover"
+              />
+            </Reveal>
+          </div>
+        </section>
+      )}
 
       {/* Details: address, hours, directions */}
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
