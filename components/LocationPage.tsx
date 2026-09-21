@@ -39,7 +39,8 @@ export default async function LocationPage({ loc }: { loc: Location }) {
             fill
             priority
             sizes="100vw"
-            className="object-cover object-[40%_center]"
+            className="object-cover"
+            style={{ objectPosition: loc.heroFocus ?? "40% center" }}
           />
           {/* Legibility overlay: heavier on the left where the copy sits */}
           <div className="absolute inset-0 bg-gradient-to-r from-pine-900/90 via-pine-900/55 to-pine-900/20" />

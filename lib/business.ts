@@ -54,6 +54,8 @@ export type Location = {
   heroImageAlt: string;
   // Full-bleed hero with a text overlay instead of the split text/photo layout.
   heroOverlay?: boolean;
+  // CSS object-position for the overlay hero photo; keeps the subject in frame on narrow screens.
+  heroFocus?: string;
   // Optional "Inside the studio" photos; first one is rendered large.
   gallery?: { src: string; alt: string }[];
 };
@@ -126,8 +128,37 @@ export const locations: Location[] = [
     hoursNote: "Text for appt outside these listed hours",
     blurb:
       "Scott's Portland studio on N Williams Ave in the Boise neighborhood is rated 5.0 on Google and open early on weekdays.",
-    heroImage: "/images/studio-portland.webp",
-    heroImageAlt: "The Renewed Bodyworks Portland studio with massage table, plants, and anatomy prints",
+    heroImage: "/images/portland-clinic-table-plant-window.webp",
+    heroImageAlt:
+      "Massage table in the Renewed Bodyworks Portland studio beside a window of hanging plants and framed anatomy prints",
+    heroOverlay: true,
+    heroFocus: "60% center",
+    gallery: [
+      {
+        src: "/images/portland-clinic-bear-print-curtain.webp",
+        alt: "Massage table in the Portland studio below a bear print, with a woodland-pattern curtain and tall houseplants",
+      },
+      {
+        src: "/images/portland-clinic-plant-window-lounge.webp",
+        alt: "Portland treatment room with a wall of hanging plants in the window and a seating area",
+      },
+      {
+        src: "/images/portland-clinic-overhead-view.webp",
+        alt: "View down the massage table toward the plant-filled window in the Portland studio",
+      },
+      {
+        src: "/images/portland-clinic-table-window-pov.webp",
+        alt: "View from the head of the massage table toward a window of hanging plants",
+      },
+      {
+        src: "/images/portland-clinic-treatment-room-wide.webp",
+        alt: "Wide view of the Portland treatment room with massage table, anatomy prints, and plants",
+      },
+      {
+        src: "/images/portland-clinic-rug-window-side.webp",
+        alt: "Massage table on a patterned rug beside the sunlit plant window in the Portland studio",
+      },
+    ],
   },
 ];
 
