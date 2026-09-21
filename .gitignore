@@ -16,3 +16,6 @@ next-env.d.ts
 public/videos/hero.mp4
 .vercel
 .env*
+
+# Finder drag leftovers. public/ is served as-is, so keep these out of the repo.
+*.textClipping
