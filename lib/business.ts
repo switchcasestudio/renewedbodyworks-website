@@ -325,6 +325,7 @@ export const nav = [
   { label: "Services", href: "/services" },
   { label: "Why Massage", href: "/why-massage" },
   { label: "About", href: "/about" },
+  { label: "Blog", href: "/blog" },
   { label: "Eugene", href: "/massage-eugene-or" },
   { label: "Portland", href: "/massage-portland-or" },
   { label: "Contact", href: "/contact" },

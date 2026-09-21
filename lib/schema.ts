@@ -1,4 +1,5 @@
 import { SITE_URL, business, locations, services, faqs, type Location } from "./business";
+import type { Post } from "./posts";
 
 // Maps our published hour labels to schema.org OpeningHoursSpecification.
 const dayMap: Record<string, string[]> = {
@@ -136,5 +137,22 @@ export function organizationSchema() {
     email: business.email,
     location: locations.map((l) => ({ "@id": `${SITE_URL}/${l.slug}#business` })),
     sameAs: locations.map((l) => l.bookingUrl),
+  };
+}
+
+export function articleSchema(post: Post) {
+  const url = `${SITE_URL}/blog/${post.slug}`;
+  return {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.description,
+    image: `${SITE_URL}${post.image}`,
+    datePublished: post.date,
+    dateModified: post.updated ?? post.date,
+    mainEntityOfPage: url,
+    url,
+    author: { "@id": `${SITE_URL}/#organization` },
+    publisher: { "@id": `${SITE_URL}/#organization` },
   };
 }
