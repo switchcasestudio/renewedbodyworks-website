@@ -28,6 +28,120 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "sports-massage-portland-eugene",
+    title: "Sports massage in Portland and Eugene, OR: move better with Renewed Bodyworks",
+    description:
+      "Sports massage for runners, cyclists, hikers, and gym regulars in Portland and Eugene. What it is, how it supports recovery, when to book it, and what a session with Scott looks like.",
+    date: "2026-09-30",
+    image: "/images/sports-knee-massage.webp",
+    imageAlt: "Therapist performing focused sports massage work on a client's knee",
+    readMinutes: 4,
+    body: [
+      {
+        type: "p",
+        text: "Whether you run the trails in Forest Park, cycle along the Willamette, hike Spencer Butte, or train at a local gym, an active life asks a lot of your muscles. At Renewed Bodyworks, Scott provides personalized [sports massage](/services#sports-massage) for active people in the Portland and Eugene areas, helping you move more comfortably and recover between the things you love doing.",
+      },
+      { type: "h2", text: "What is sports massage?" },
+      {
+        type: "p",
+        text: "Sports massage is a focused form of massage therapy for people who exercise, play sports, work physically demanding jobs, or deal with recurring muscle tension. You do not need to be a competitive athlete to benefit from it. Every session is tailored to your body, your activities, and your goals.",
+      },
+      { type: "p", text: "Depending on what your body needs, Scott may bring in:" },
+      {
+        type: "ul",
+        items: [
+          "Targeted deep tissue work",
+          "Trigger point therapy",
+          "Myofascial release",
+          "Assisted stretching",
+          "Compression",
+          "Range-of-motion techniques",
+        ],
+      },
+      { type: "h2", text: "How sports massage helps" },
+      { type: "p", text: "Sports massage may help support:" },
+      {
+        type: "ul",
+        items: [
+          "Muscle recovery after workouts or events",
+          "Relief from exercise-related tension",
+          "Flexibility and mobility",
+          "Body awareness",
+          "Relaxation after strenuous activity",
+          "Ongoing wellness for active people",
+        ],
+      },
+      {
+        type: "p",
+        text: "Scott pays close attention to the areas physical activity tends to load up: calves, hamstrings, hips, glutes, shoulders, neck, and lower back.",
+      },
+      { type: "h2", text: "Built for how Portland and Eugene stay active" },
+      {
+        type: "p",
+        text: "Both cities give you endless ways to move, and each one leaves its own kind of tightness behind.",
+      },
+      { type: "p", text: "In Portland, that might look like:" },
+      {
+        type: "ul",
+        items: [
+          "Running in Forest Park or along the Eastbank Esplanade",
+          "Cycling through the city and the surrounding countryside",
+          "Hiking the Columbia River Gorge",
+          "Training for a local race",
+          "Strength training, yoga, and fitness classes",
+          "Rec-league soccer, basketball, and pickup games",
+        ],
+      },
+      { type: "p", text: "In Eugene, it might be:" },
+      {
+        type: "ul",
+        items: [
+          "Running the riverbank paths along the Willamette",
+          "Hiking Spencer Butte or Mount Pisgah",
+          "Cycling through Eugene and Springfield",
+          "Yoga, Pilates, and strength training",
+          "University and community rec sports",
+          "Getting outside anywhere in the southern Willamette Valley",
+        ],
+      },
+      {
+        type: "p",
+        text: "Whether you are preparing for an event in Portland, recovering from a hike near Eugene, or managing tension from regular workouts, Scott customizes the session to fit your lifestyle.",
+      },
+      { type: "h2", text: "When should you schedule a sports massage?" },
+      {
+        type: "ul",
+        items: [
+          "Before an event: a lighter session can help prepare your body for movement.",
+          "After an event: gentle, recovery-focused work can help you unwind after strenuous activity.",
+          "Between workouts: the best time for focused work on persistent tightness.",
+        ],
+      },
+      {
+        type: "p",
+        text: "If you are new to sports massage, avoid scheduling intense work right before an important race, competition, or demanding workout. Give your body a few days to adapt.",
+      },
+      { type: "h2", text: "What to expect at Renewed Bodyworks" },
+      {
+        type: "p",
+        text: "Your session begins with a conversation about your activities, goals, and areas of concern. Scott uses that to build the hour around you rather than a set routine.",
+      },
+      {
+        type: "p",
+        text: "You are encouraged to speak up throughout, so pressure and techniques can be adjusted to your comfort. Sports massage may involve focused pressure, but it should never feel sharp or unbearable.",
+      },
+      { type: "h2", text: "Book sports massage in Portland or Eugene" },
+      {
+        type: "p",
+        text: "Your body works hard to support the activities you enjoy. Whether you are a runner, cyclist, hiker, lifter, or simply dealing with muscle tension, sports massage can be a valuable part of your routine. Renewed Bodyworks has studios in [downtown Eugene](/massage-eugene-or) and [Portland](/massage-portland-or), and you can [book online](/book) at either one.",
+      },
+      {
+        type: "p",
+        text: "Sports massage is not a substitute for medical diagnosis or treatment. Consult a qualified healthcare professional for significant, persistent, or worsening pain.",
+      },
+    ],
+  },
+  {
     slug: "deep-tissue-vs-swedish-massage",
     title: "Deep tissue vs. Swedish massage: which one do you need?",
     description:
