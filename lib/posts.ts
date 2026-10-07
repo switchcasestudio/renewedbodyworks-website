@@ -24,9 +24,165 @@ export type Post = {
   imageAlt: string;
   readMinutes: number;
   body: PostBlock[];
+  // Optional Q&A rendered after the body and emitted as FAQPage JSON-LD.
+  faqs?: { q: string; a: string }[];
 };
 
 export const posts: Post[] = [
+  {
+    slug: "assisted-stretching-portland-eugene",
+    title: "Assisted stretching in Portland and Eugene, OR: move more freely with Renewed Bodyworks",
+    description:
+      "Assisted stretching in Portland and Eugene, OR with licensed massage therapist Scott Hartzell. What it is, who it helps, what a session feels like, and how it pairs with massage.",
+    date: "2026-10-07",
+    image: "/images/therapeutic-male.webp",
+    imageAlt: "Massage therapist easing tension from a client's neck and shoulder before assisted stretching",
+    readMinutes: 5,
+    body: [
+      {
+        type: "p",
+        text: "Assisted stretching is a hands-on technique where a trained practitioner guides your body through gentle, controlled stretches while you relax. At Renewed Bodyworks, Scott Hartzell, a licensed massage therapist (Oregon LMT #28785), offers assisted stretching at his studios in [downtown Eugene](/massage-eugene-or) and [North Portland](/massage-portland-or) to help ease tension, improve mobility, and support relaxation.",
+      },
+      {
+        type: "p",
+        text: "Feeling your best starts with comfortable, unrestricted movement. Unlike stretching on your own, where you hold the position and do the work, assisted stretching lets Scott support and guide each movement so your muscles can let go.",
+      },
+      { type: "h2", text: "What is assisted stretching?" },
+      {
+        type: "p",
+        text: "During an assisted stretching session, Scott uses gentle movements and stretches to work on areas of tightness and limited mobility. Depending on your needs, your session may include:",
+      },
+      {
+        type: "ul",
+        items: [
+          "Gentle range-of-motion movements",
+          "Static and dynamic stretching",
+          "Light resistance, where you gently press against Scott's hand before easing into the stretch",
+          "Joint mobility techniques",
+          "Targeted stretching for the hips, shoulders, legs, neck, and back",
+        ],
+      },
+      {
+        type: "p",
+        text: "Assisted stretching is usually built into a massage session, or it can be the focus of its own session.",
+      },
+      { type: "h2", text: "Assisted stretching vs. stretching on your own" },
+      {
+        type: "ul",
+        items: [
+          "You relax instead of working. When you stretch alone, the muscles holding the position stay engaged. With assisted stretching, Scott holds the position so the target muscle can release.",
+          "Better positioning. It is hard to stretch your own hips, hamstrings, or upper back at the right angle. A practitioner can place the stretch exactly where you need it.",
+          "Feedback in real time. Scott watches how your body responds and adjusts the depth, angle, and pace as you go.",
+          "Safer progress. Stretches stay gentle and productive, never forced, so you are not guessing how far to push.",
+        ],
+      },
+      { type: "h2", text: "Benefits of assisted stretching" },
+      { type: "p", text: "Assisted stretching may help you:" },
+      {
+        type: "ul",
+        items: [
+          "Improve flexibility",
+          "Increase range of motion",
+          "Reduce everyday muscle tension",
+          "Relieve feelings of stiffness",
+          "Support better posture and movement",
+          "Enhance relaxation",
+          "Improve body awareness",
+        ],
+      },
+      {
+        type: "p",
+        text: "Whether you spend long hours at a desk, stay active, or simply want to move more comfortably, assisted stretching can be a valuable part of your wellness routine.",
+      },
+      { type: "h2", text: "Who can benefit from assisted stretching?" },
+      { type: "p", text: "Assisted stretching may be a good option for:" },
+      {
+        type: "ul",
+        items: [
+          "Desk workers and anyone who sits for long hours, including Portland and Eugene remote workers and students",
+          "Active people and athletes: runners, cyclists, hikers, climbers, and gym regulars",
+          "People who feel generally stiff, especially in the hips, lower back, neck, and shoulders",
+          "Anyone who wants to improve mobility",
+          "People returning to movement after a period of inactivity",
+          "Clients who prefer guided stretching over stretching alone",
+        ],
+      },
+      {
+        type: "p",
+        text: "Every session is adjusted to your comfort level and personal goals. If you are training for something, Scott's post on [sports massage in Portland and Eugene](/blog/sports-massage-portland-eugene) covers how stretching fits into a recovery routine.",
+      },
+      { type: "h2", text: "What to expect during a session" },
+      {
+        type: "p",
+        text: "Your session begins with a conversation about your goals, activity level, and any areas of discomfort. Scott then builds a comfortable approach around your individual needs rather than running a set routine.",
+      },
+      {
+        type: "p",
+        text: "Throughout the session you are encouraged to breathe naturally and to say how each movement feels. A stretch should feel gentle and productive, never painful or forced. Your comfort and safety always come first.",
+      },
+      { type: "h2", text: "Assisted stretching and massage therapy" },
+      {
+        type: "p",
+        text: "Massage therapy and assisted stretching complement each other well. Massage addresses soft-tissue tension, while assisted stretching focuses on mobility and movement. Warming the muscles with massage first often lets them lengthen more easily during the stretch.",
+      },
+      {
+        type: "p",
+        text: "Combining the two may help you feel more relaxed, less restricted, and more connected to your body. Scott regularly blends stretching into [customized bodywork](/services#customized-bodywork), [sports massage](/services#sports-massage), and [full body therapeutic massage](/services#therapeutic-massage). If you are not sure which style fits you, see [deep tissue vs. Swedish massage](/blog/deep-tissue-vs-swedish-massage).",
+      },
+      { type: "h2", text: "Assisted stretching in Eugene and Portland" },
+      {
+        type: "p",
+        text: "Renewed Bodyworks has two Oregon studios, and assisted stretching is available at both:",
+      },
+      {
+        type: "ul",
+        items: [
+          "[Eugene](/massage-eugene-or): 767 Willamette St #301, downtown Eugene. Thursday to Saturday, with other times available by text.",
+          "[Portland](/massage-portland-or): 2005 N Williams Ave #533, in North Portland's Boise neighborhood. Sunday to Wednesday, with other times available by text.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Sessions run 30, 60, or 90 minutes. Just mention assisted stretching when you book or at the start of your session and Scott will work it in.",
+      },
+      { type: "h2", text: "Your comfort comes first" },
+      {
+        type: "p",
+        text: "Before your session, please share any injuries, surgeries, chronic conditions, pregnancy, or other health concerns. Assisted stretching should never cause sharp pain, numbness, tingling, or dizziness.",
+      },
+      {
+        type: "p",
+        text: "If you have a recent injury, severe pain, joint instability, osteoporosis, or a recent surgery, consult your healthcare provider before scheduling a session. Assisted stretching is not a substitute for medical diagnosis or treatment.",
+      },
+      { type: "h2", text: "Feel more mobile. Feel renewed." },
+      {
+        type: "p",
+        text: "Assisted stretching is more than lengthening muscles. It is a chance to slow down, release tension, and reconnect with how your body moves. If you are ready to feel more flexible, relaxed, and supported, [book an assisted stretching or massage session](/book) at the Eugene or Portland studio.",
+      },
+    ],
+    faqs: [
+      {
+        q: "What is assisted stretching?",
+        a: "Assisted stretching is a hands-on technique where a trained practitioner guides your body through gentle, controlled stretches while you relax. At Renewed Bodyworks in Eugene and Portland, Oregon, licensed massage therapist Scott Hartzell uses range-of-motion work, static and dynamic stretches, light resistance, and joint mobility techniques for the hips, shoulders, legs, neck, and back.",
+      },
+      {
+        q: "Does assisted stretching hurt?",
+        a: "No. A stretch should feel gentle and productive, never painful or forced. You are encouraged to breathe naturally and tell Scott how each movement feels so he can adjust. Stop and speak up if you feel sharp pain, numbness, tingling, or dizziness.",
+      },
+      {
+        q: "Can I combine assisted stretching with a massage?",
+        a: "Yes. Assisted stretching is usually included with massage therapy at Renewed Bodyworks. Massage addresses soft-tissue tension and stretching focuses on mobility, so the two work well together in a 60- or 90-minute session.",
+      },
+      {
+        q: "Where can I get assisted stretching in Portland or Eugene?",
+        a: "Renewed Bodyworks offers assisted stretching at 2005 N Williams Ave #533 in Portland and 767 Willamette St #301 in downtown Eugene. Book online at renewedbodyworks.com/book or text 541-543-5215.",
+      },
+      {
+        q: "Who should not get assisted stretching?",
+        a: "If you have a recent injury, severe pain, joint instability, osteoporosis, or a recent surgery, check with your healthcare provider first. Always tell your therapist about injuries, chronic conditions, or pregnancy before the session.",
+      },
+    ],
+  },
   {
     slug: "sports-massage-portland-eugene",
     title: "Sports massage in Portland and Eugene, OR: move better with Renewed Bodyworks",

@@ -98,11 +98,11 @@ export function personSchema() {
   };
 }
 
-export function faqSchema() {
+export function faqSchema(items: { q: string; a: string }[] = faqs) {
   return {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: faqs.map((f) => ({
+    mainEntity: items.map((f) => ({
       "@type": "Question",
       name: f.q,
       acceptedAnswer: { "@type": "Answer", text: f.a },

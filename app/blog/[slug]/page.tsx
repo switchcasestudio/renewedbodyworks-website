@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { business } from "@/lib/business";
 import { pageMeta } from "@/lib/seo";
-import { articleSchema, breadcrumbSchema } from "@/lib/schema";
+import { articleSchema, breadcrumbSchema, faqSchema } from "@/lib/schema";
 import { allPosts, formatPostDate, getPost } from "@/lib/posts";
 import JsonLd from "@/components/JsonLd";
 import PostBody from "@/components/PostBody";
@@ -59,6 +59,7 @@ export default async function BlogPostPage({ params }: Params) {
             { name: "Blog", path: "/blog" },
             { name: post.title, path: `/blog/${post.slug}` },
           ]),
+          ...(post.faqs?.length ? [faqSchema(post.faqs)] : []),
         ]}
       />
 
@@ -99,6 +100,22 @@ export default async function BlogPostPage({ params }: Params) {
 
         <div className="mx-auto max-w-3xl px-4 pt-10 pb-16 sm:px-6">
           <PostBody blocks={post.body} />
+
+          {post.faqs && post.faqs.length > 0 && (
+            <section className="mt-12">
+              <h2 className="mb-6 font-display text-3xl font-semibold leading-tight text-pine-deep">
+                Frequently asked questions
+              </h2>
+              <dl className="space-y-6">
+                {post.faqs.map((f) => (
+                  <div key={f.q}>
+                    <dt className="font-semibold text-pine-deep">{f.q}</dt>
+                    <dd className="mt-2 text-[17px] leading-[1.8] text-ink/90">{f.a}</dd>
+                  </div>
+                ))}
+              </dl>
+            </section>
+          )}
 
           <aside className="mt-12 flex items-center gap-5 rounded-[18px] border border-pine/10 bg-white p-6 shadow-sm">
             <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full">
