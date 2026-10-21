@@ -30,6 +30,75 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "holiday-massage-portland-eugene",
+    title: "Find a moment of calm this holiday season: massage in Portland and Eugene, OR",
+    description:
+      "When the holidays fill your calendar, your own well-being is usually the first thing to slide. Why a massage at Renewed Bodyworks in Portland or Eugene is worth an hour, and what one client said after a session.",
+    date: "2026-10-20",
+    image: "/images/ambiance-diffuser.webp",
+    imageAlt: "Quiet treatment room with candles, a reed diffuser, and a rolled towel",
+    readMinutes: 3,
+    body: [
+      {
+        type: "p",
+        text: "The holidays can be a joyful time. They also bring a packed calendar, travel, and a longer to-do list than usual, and taking care of yourself is often the first thing to go. A massage is an hour where nothing is asked of you except to lie down and breathe.",
+      },
+      { type: "h2", text: "Why massage helps when the season gets busy" },
+      {
+        type: "p",
+        text: "Many people find massage calming and restorative. In a quiet room, with someone paying close attention to where you hold tension, your body gets a chance to slow down. [Swedish massage](/services#swedish-massage) in particular uses long, flowing strokes meant to calm the nervous system, and Scott can keep the whole session gentle if relaxation is all you want.",
+      },
+      {
+        type: "p",
+        text: "Booking the appointment helps too. It puts an hour on your calendar that belongs to you, in a month when most of your hours belong to someone else.",
+      },
+      { type: "h2", text: "Why safe, caring touch matters" },
+      {
+        type: "p",
+        text: "Well-being takes more than getting through your list. Safe, respectful, consensual touch can bring comfort and a real sense of being cared for, and it's easy to go without it for a long time. When life feels rushed and people feel far away, that kind of touch helps you feel present in your body again.",
+      },
+      {
+        type: "p",
+        text: "You stay in charge of the session at Renewed Bodyworks. Tell Scott how much pressure you like and which areas to leave alone, and speak up anytime if you want something changed.",
+      },
+      { type: "h2", text: "What one client said" },
+      {
+        type: "p",
+        text: "\"Hey Scott! I just wanted to send a quick text to say thank you, thank you, thank you for the massage. I can't explain it, but when I left your office, I just felt so much lighter and like I was carrying less burden than I was when I walked in. Your touch is genuinely magic, so healing and restorative. Your place and presence really felt safe which allowed me to really just let go and be, something I can't do on a daily basis with all the stresses. I even slept all night long, woke up feeling rested that hasn't happened in a long time. Thank you so much for your amazing work. I'm so grateful and can't wait till next visit.\"",
+      },
+      { type: "p", text: "Stacy M., Renewed Bodyworks client" },
+      { type: "h2", text: "Fitting a massage into the holidays" },
+      {
+        type: "ul",
+        items: [
+          "Short on time? A [30-minute focused session](/services#focused-session) ($55) works on one problem area, like the neck and shoulders after a long drive.",
+          "Want to fully unwind? A 60- or 90-minute [full body therapeutic massage](/services#therapeutic-massage) gives you more time to settle in.",
+          "Traveling between cities? Scott is in Portland Sunday through Wednesday and in Eugene Thursday through Saturday, so you can book wherever you'll be.",
+          "Need a time outside the listed hours? Text 541-543-5215 and ask.",
+        ],
+      },
+      { type: "h2", text: "Book a massage in Portland or Eugene" },
+      {
+        type: "p",
+        text: "Renewed Bodyworks has studios at [2005 N Williams Ave #533 in North Portland](/massage-portland-or) and [767 Willamette St #301 in downtown Eugene](/massage-eugene-or). If you want an hour of quiet before the season picks up, [book online](/book) at either studio and put yourself on the list this year.",
+      },
+    ],
+    faqs: [
+      {
+        q: "Can massage help with holiday stress?",
+        a: "Many people find massage calming and use it as a regular break during busy stretches like the holidays. A Swedish or full body therapeutic massage at Renewed Bodyworks focuses on relaxation and easing everyday tension. Massage is not a substitute for medical or mental health care.",
+      },
+      {
+        q: "What massage should I book if I'm short on time?",
+        a: "A 30-minute focused session ($55) works on one area of tension, such as the neck and shoulders. For full-body relaxation, book 60 minutes ($120) or 90 minutes ($165).",
+      },
+      {
+        q: "Where can I get a massage in Portland or Eugene during the holidays?",
+        a: "Renewed Bodyworks is at 2005 N Williams Ave #533 in Portland (Sunday to Wednesday) and 767 Willamette St #301 in downtown Eugene (Thursday to Saturday). Book online at renewedbodyworks.com/book or text 541-543-5215 for times outside the listed hours.",
+      },
+    ],
+  },
+  {
     slug: "assisted-stretching-portland-eugene",
     title: "Assisted stretching in Portland and Eugene, OR: move more freely with Renewed Bodyworks",
     description:
