@@ -47,6 +47,9 @@ export const metadata: Metadata = {
     googleBot: { index: true, follow: true, "max-image-preview": "large" },
   },
   icons: { icon: "/renewed-logo.png", apple: "/renewed-logo.png" },
+  // Google Search Console ownership (URL-prefix property https://www.renewedbodyworks.com/).
+  // Keep this tag even after verification succeeds, or access is lost.
+  verification: { google: "B9s0DvuJrOS1MaeFIjDyGW5JCmMdeXHYook8Hy3-xPs" },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
