@@ -80,7 +80,7 @@ export default async function BlogPostPage({ params }: Params) {
               <span aria-hidden> · </span>
               {post.readMinutes} min read
               <span aria-hidden> · </span>
-              {business.name}
+              {post.author === "scott" ? business.practitioner : business.name}
             </p>
           </div>
         </header>

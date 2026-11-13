@@ -26,9 +26,122 @@ export type Post = {
   body: PostBlock[];
   // Optional Q&A rendered after the body and emitted as FAQPage JSON-LD.
   faqs?: { q: string; a: string }[];
+  // "scott" = written by Scott: byline + BlogPosting author become Scott (Person).
+  author?: "scott";
+  // Studios the post is about; emitted as BlogPosting `mentions` (LocalBusiness @ids).
+  locations?: ("portland" | "eugene")[];
 };
 
 export const posts: Post[] = [
+  {
+    slug: "first-massage-what-to-expect",
+    title: "Your first massage in Portland or Eugene: what to expect",
+    description:
+      "First massage in Portland or Eugene, OR? Scott Hartzell, LMT explains what to wear, how draping works, what a session feels like, and where to park.",
+    date: "2026-11-12",
+    image: "/images/portland-clinic-treatment-room-wide.webp",
+    imageAlt: "Massage table made up and ready in the Renewed Bodyworks treatment room on N Williams Ave in Portland",
+    readMinutes: 5,
+    author: "scott",
+    locations: ["portland", "eugene"],
+    body: [
+      {
+        type: "p",
+        text: "Trying massage for the first time can bring up a lot of questions. What should I wear? Will it hurt? Do I have to talk? At Renewed Bodyworks, your comfort and consent come first, whether you book at my studio in North Portland or in downtown Eugene. Here's what you can expect before, during, and after your first session, plus how to find each studio and where to park.",
+      },
+      { type: "h2", text: "Before your session" },
+      {
+        type: "p",
+        text: "We'll start with a brief conversation about what brings you in, what you'd like from your massage, and any areas you'd like me to focus on or avoid. This is also a good time to mention relevant health concerns, injuries, sensitivities, or preferences.",
+      },
+      {
+        type: "p",
+        text: "You're welcome to ask questions or share what would help you feel comfortable. You can request lighter or firmer pressure, more quiet, or adjustments at any point.",
+      },
+      { type: "h2", text: "What to wear and how draping works" },
+      {
+        type: "p",
+        text: "You'll have privacy to undress to your comfort level and get settled under the sheet or blanket. You never need to remove more clothing than you're comfortable taking off. Professional draping keeps you covered, and only the area being worked on is uncovered. Areas you haven't agreed to have massaged stay covered.",
+      },
+      {
+        type: "p",
+        text: "If you prefer to keep some clothing on, that's okay too. Just let me know so we can plan your session accordingly.",
+      },
+      { type: "h2", text: "During your massage" },
+      {
+        type: "p",
+        text: "You don't need to know what to do or how to \"be\" during a massage. You can relax quietly, chat, or ask questions, whatever feels natural. I'll check in about pressure and comfort, and you can speak up at any time if you'd like something changed or would like to pause or stop.",
+      },
+      {
+        type: "p",
+        text: "Massage should not feel like something you have to endure. Some techniques may create a sensation of pressure or tenderness, but tell me if anything feels painful or uncomfortable.",
+      },
+      { type: "h2", text: "After your session" },
+      {
+        type: "p",
+        text: "Take your time getting up and getting dressed. You may feel relaxed or notice that your body feels different after the session. Drink water if you're thirsty, and give yourself a moment before heading back into your day.",
+      },
+      { type: "h2", text: "Which massage to book for your first visit" },
+      {
+        type: "ul",
+        items: [
+          "Want to relax and see what massage feels like? [Swedish massage](/services#swedish-massage) uses long, flowing strokes and can stay gentle the whole time.",
+          "Carrying tension in your back, neck, or shoulders? A 60- or 90-minute [full body therapeutic massage](/services#therapeutic-massage) ($120 or $165) leaves time to work on problem areas and still cover the whole body.",
+          "Nervous about a full hour? A [30-minute focused session](/services#focused-session) ($55) works on one area and is an easy way to start.",
+          "Active, training, or recovering from a sport? Read about [sports massage in Portland and Eugene](/blog/sports-massage-portland-eugene).",
+        ],
+      },
+      { type: "h2", text: "Finding the Portland studio on N Williams Ave" },
+      {
+        type: "p",
+        text: "My [Portland massage studio](/massage-portland-or) is at 2005 N Williams Ave #533 in North Portland, inside the Cadence apartment building, open Sunday through Wednesday. There is plenty of street parking nearby, and it is generally free. On Moda Center event days, parking fees apply only after 5 p.m.",
+      },
+      {
+        type: "p",
+        text: "The building is locked, so I'll come down to let you in. Text me at 541-543-5215 when you're parking and tell me which side of the building you're on: N Williams Ave or N Vancouver Ave. Google Maps may bring you to the Vancouver side. [Get directions to the Portland studio](https://maps.google.com/?cid=14423628157848241120).",
+      },
+      { type: "h2", text: "Finding the Eugene studio downtown" },
+      {
+        type: "p",
+        text: "My [Eugene massage studio](/massage-eugene-or) is at 767 Willamette St #301 in downtown Eugene, inside the historic Smeede Hotel building, open Thursday through Saturday. Suite 301 is on the third floor, and the building has an elevator. There is metered street parking nearby, as well as a parking garage across the street with the first hour free. During some local events, parking may cost $10.",
+      },
+      {
+        type: "p",
+        text: "The Eugene Saturday Market is right behind the building, so parking can be harder on Saturdays. Please allow a little extra time to find a spot and arrive. [Get directions to the Eugene studio](https://www.google.com/maps/search/?api=1&query=Renewed%20Bodyworks%20Eugene&query_place_id=ChIJV2BVLwgfwVQRFFokMLSiyR4).",
+      },
+      { type: "h2", text: "Book your first massage in Portland or Eugene" },
+      {
+        type: "p",
+        text: "I'm in Portland Sunday through Wednesday and in Eugene Thursday through Saturday. [Book online](/book) at either studio, or [see all services and prices](/services) first. If you need a time outside the listed hours, or you're unsure about anything before your first appointment, text me at 541-543-5215. I'm happy to help you feel prepared and comfortable.",
+      },
+    ],
+    faqs: [
+      {
+        q: "What should I wear to my first massage?",
+        a: "Whatever is comfortable. You undress in private only to your comfort level and get under a sheet or blanket. Professional draping keeps you covered except for the area being worked on, and you're welcome to keep some clothing on.",
+      },
+      {
+        q: "Will my first massage hurt?",
+        a: "It shouldn't. Some techniques can feel like firm pressure or tenderness, but you can ask for lighter or firmer pressure, or to pause or stop, at any time. Scott checks in about pressure and comfort throughout the session.",
+      },
+      {
+        q: "Do I have to talk during a massage?",
+        a: "No. You can relax quietly, chat, or ask questions, whatever feels natural to you.",
+      },
+      {
+        q: "How long should my first massage be?",
+        a: "Most first-time clients book 60 minutes ($120). Choose 90 minutes ($165) for more time on problem areas, or a 30-minute focused session ($55) to try massage on one area first.",
+      },
+      {
+        q: "Where do I park for a massage in Portland?",
+        a: "The Portland studio is at 2005 N Williams Ave #533 in the Cadence apartment building. Street parking nearby is generally free, with fees after 5 p.m. on Moda Center event days. The building is locked, so text 541-543-5215 when you're parking and Scott will come down to let you in.",
+      },
+      {
+        q: "Where do I park for a massage in downtown Eugene?",
+        a: "The Eugene studio is at 767 Willamette St #301 in the Smeede Hotel building, with an elevator to the third floor. There is metered street parking nearby and a garage across the street with the first hour free. Saturdays are busier because the Eugene Saturday Market is behind the building, so allow extra time.",
+      },
+    ],
+  },
   {
     slug: "holiday-massage-portland-eugene",
     title: "Find a moment of calm this holiday season: massage in Portland and Eugene, OR",

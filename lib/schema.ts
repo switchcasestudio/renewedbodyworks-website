@@ -152,7 +152,29 @@ export function articleSchema(post: Post) {
     dateModified: post.updated ?? post.date,
     mainEntityOfPage: url,
     url,
-    author: { "@id": `${SITE_URL}/#organization` },
+    author:
+      post.author === "scott"
+        ? {
+            "@type": "Person",
+            name: "Scott Hartzell",
+            jobTitle: "Licensed Massage Therapist",
+            url: `${SITE_URL}/about`,
+            worksFor: { "@id": `${SITE_URL}/#organization` },
+          }
+        : { "@id": `${SITE_URL}/#organization` },
     publisher: { "@id": `${SITE_URL}/#organization` },
+    ...(post.locations?.length
+      ? {
+          mentions: locations
+            .filter((l) => post.locations!.includes(l.key))
+            .map((l) => ({ "@id": `${SITE_URL}/${l.slug}#business` })),
+          contentLocation: locations
+            .filter((l) => post.locations!.includes(l.key))
+            .map((l) => ({
+              "@type": "Place",
+              name: `${l.addressLocality}, ${l.addressRegion}`,
+            })),
+        }
+      : {}),
   };
 }
